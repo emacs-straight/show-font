@@ -1,7 +1,7 @@
-This is docKZbOD0.info, produced by makeinfo version 6.8 from
+This is docZhmEFa.info, produced by makeinfo version 6.8 from
 show-font.texi.
 
-Copyright (C) 2023 Free Software Foundation, Inc.
+Copyright (C) 2024 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -20,12 +20,12 @@ START-INFO-DIR-ENTRY
 END-INFO-DIR-ENTRY
 
 
-File: docKZbOD0.info,  Node: Top,  Next: Overview,  Up: (dir)
+File: docZhmEFa.info,  Node: Top,  Next: Overview,  Up: (dir)
 
 show-font: preview fonts
 ************************
 
-Copyright (C) 2023 Free Software Foundation, Inc.
+Copyright (C) 2024 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -86,7 +86,7 @@ Indices
 
 
 
-File: docKZbOD0.info,  Node: Overview,  Next: Installation,  Prev: Top,  Up: Top
+File: docZhmEFa.info,  Node: Overview,  Next: Installation,  Prev: Top,  Up: Top
 
 1 Overview
 **********
@@ -144,7 +144,7 @@ elements.
    • ‘show-font-button’
 
 
-File: docKZbOD0.info,  Node: Installation,  Next: Sample configuration,  Prev: Overview,  Up: Top
+File: docZhmEFa.info,  Node: Installation,  Next: Sample configuration,  Prev: Overview,  Up: Top
 
 2 Installation
 **************
@@ -155,7 +155,7 @@ File: docKZbOD0.info,  Node: Installation,  Next: Sample configuration,  Prev: O
 * Manual installation::
 
 
-File: docKZbOD0.info,  Node: GNU ELPA package,  Next: Manual installation,  Up: Installation
+File: docZhmEFa.info,  Node: GNU ELPA package,  Next: Manual installation,  Up: Installation
 
 2.1 GNU ELPA package
 ====================
@@ -174,7 +174,7 @@ archive.  Read:
 <https://protesilaos.com/codelog/2022-05-13-emacs-elpa-devel/>.
 
 
-File: docKZbOD0.info,  Node: Manual installation,  Prev: GNU ELPA package,  Up: Installation
+File: docZhmEFa.info,  Node: Manual installation,  Prev: GNU ELPA package,  Up: Installation
 
 2.2 Manual installation
 =======================
@@ -201,7 +201,7 @@ following commands in a shell prompt:
    Everything is in place to set up the package.
 
 
-File: docKZbOD0.info,  Node: Sample configuration,  Next: Acknowledgements,  Prev: Installation,  Up: Top
+File: docZhmEFa.info,  Node: Sample configuration,  Next: Acknowledgements,  Prev: Installation,  Up: Top
 
 3 Sample configuration
 **********************
@@ -212,7 +212,7 @@ File: docKZbOD0.info,  Node: Sample configuration,  Next: Acknowledgements,  Pre
      (define-key global-map (kbd "C-c s l") #'show-font-list)
 
 
-File: docKZbOD0.info,  Node: Acknowledgements,  Next: GNU Free Documentation License,  Prev: Sample configuration,  Up: Top
+File: docZhmEFa.info,  Node: Acknowledgements,  Next: GNU Free Documentation License,  Prev: Sample configuration,  Up: Top
 
 4 Acknowledgements
 ******************
@@ -230,7 +230,7 @@ Ideas and/or user feedback
      Darryl Hebbes, Perry Metzger.
 
 
-File: docKZbOD0.info,  Node: GNU Free Documentation License,  Next: Indices,  Prev: Acknowledgements,  Up: Top
+File: docZhmEFa.info,  Node: GNU Free Documentation License,  Next: Indices,  Prev: Acknowledgements,  Up: Top
 
 5 GNU Free Documentation License
 ********************************
@@ -712,7 +712,7 @@ software license, such as the GNU General Public License, to permit
 their use in free software.
 
 
-File: docKZbOD0.info,  Node: Indices,  Prev: GNU Free Documentation License,  Up: Top
+File: docZhmEFa.info,  Node: Indices,  Prev: GNU Free Documentation License,  Up: Top
 
 6 Indices
 *********
@@ -724,7 +724,7 @@ File: docKZbOD0.info,  Node: Indices,  Prev: GNU Free Documentation License,  Up
 * Concept index::
 
 
-File: docKZbOD0.info,  Node: Function index,  Next: Variable index,  Up: Indices
+File: docZhmEFa.info,  Node: Function index,  Next: Variable index,  Up: Indices
 
 6.1 Function index
 ==================
@@ -738,7 +738,7 @@ File: docKZbOD0.info,  Node: Function index,  Next: Variable index,  Up: Indices
 * show-font-select-preview:              Overview.             (line  9)
 
 
-File: docKZbOD0.info,  Node: Variable index,  Next: Concept index,  Prev: Function index,  Up: Indices
+File: docZhmEFa.info,  Node: Variable index,  Next: Concept index,  Prev: Function index,  Up: Indices
 
 6.2 Variable index
 ==================
@@ -758,7 +758,7 @@ File: docKZbOD0.info,  Node: Variable index,  Next: Concept index,  Prev: Functi
 * show-font-title-small:                 Overview.             (line 52)
 
 
-File: docKZbOD0.info,  Node: Concept index,  Prev: Variable index,  Up: Indices
+File: docZhmEFa.info,  Node: Concept index,  Prev: Variable index,  Up: Indices
 
 6.3 Concept index
 =================
