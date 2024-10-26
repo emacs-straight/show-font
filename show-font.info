@@ -1,4 +1,4 @@
-This is docZhmEFa.info, produced by makeinfo version 6.8 from
+This is docRtdkIk.info, produced by makeinfo version 6.8 from
 show-font.texi.
 
 Copyright (C) 2024 Free Software Foundation, Inc.
@@ -20,7 +20,7 @@ START-INFO-DIR-ENTRY
 END-INFO-DIR-ENTRY
 
 
-File: docZhmEFa.info,  Node: Top,  Next: Overview,  Up: (dir)
+File: docRtdkIk.info,  Node: Top,  Next: Overview,  Up: (dir)
 
 show-font: preview fonts
 ************************
@@ -86,7 +86,7 @@ Indices
 
 
 
-File: docZhmEFa.info,  Node: Overview,  Next: Installation,  Prev: Top,  Up: Top
+File: docRtdkIk.info,  Node: Overview,  Next: Installation,  Prev: Top,  Up: Top
 
 1 Overview
 **********
@@ -144,7 +144,7 @@ elements.
    • ‘show-font-button’
 
 
-File: docZhmEFa.info,  Node: Installation,  Next: Sample configuration,  Prev: Overview,  Up: Top
+File: docRtdkIk.info,  Node: Installation,  Next: Sample configuration,  Prev: Overview,  Up: Top
 
 2 Installation
 **************
@@ -155,7 +155,7 @@ File: docZhmEFa.info,  Node: Installation,  Next: Sample configuration,  Prev: O
 * Manual installation::
 
 
-File: docZhmEFa.info,  Node: GNU ELPA package,  Next: Manual installation,  Up: Installation
+File: docRtdkIk.info,  Node: GNU ELPA package,  Next: Manual installation,  Up: Installation
 
 2.1 GNU ELPA package
 ====================
@@ -174,7 +174,7 @@ archive.  Read:
 <https://protesilaos.com/codelog/2022-05-13-emacs-elpa-devel/>.
 
 
-File: docZhmEFa.info,  Node: Manual installation,  Prev: GNU ELPA package,  Up: Installation
+File: docRtdkIk.info,  Node: Manual installation,  Prev: GNU ELPA package,  Up: Installation
 
 2.2 Manual installation
 =======================
@@ -201,7 +201,7 @@ following commands in a shell prompt:
    Everything is in place to set up the package.
 
 
-File: docZhmEFa.info,  Node: Sample configuration,  Next: Acknowledgements,  Prev: Installation,  Up: Top
+File: docRtdkIk.info,  Node: Sample configuration,  Next: Acknowledgements,  Prev: Installation,  Up: Top
 
 3 Sample configuration
 **********************
@@ -212,7 +212,7 @@ File: docZhmEFa.info,  Node: Sample configuration,  Next: Acknowledgements,  Pre
      (define-key global-map (kbd "C-c s l") #'show-font-list)
 
 
-File: docZhmEFa.info,  Node: Acknowledgements,  Next: GNU Free Documentation License,  Prev: Sample configuration,  Up: Top
+File: docRtdkIk.info,  Node: Acknowledgements,  Next: GNU Free Documentation License,  Prev: Sample configuration,  Up: Top
 
 4 Acknowledgements
 ******************
@@ -230,7 +230,7 @@ Ideas and/or user feedback
      Darryl Hebbes, Perry Metzger.
 
 
-File: docZhmEFa.info,  Node: GNU Free Documentation License,  Next: Indices,  Prev: Acknowledgements,  Up: Top
+File: docRtdkIk.info,  Node: GNU Free Documentation License,  Next: Indices,  Prev: Acknowledgements,  Up: Top
 
 5 GNU Free Documentation License
 ********************************
@@ -712,7 +712,7 @@ software license, such as the GNU General Public License, to permit
 their use in free software.
 
 
-File: docZhmEFa.info,  Node: Indices,  Prev: GNU Free Documentation License,  Up: Top
+File: docRtdkIk.info,  Node: Indices,  Prev: GNU Free Documentation License,  Up: Top
 
 6 Indices
 *********
@@ -724,7 +724,7 @@ File: docZhmEFa.info,  Node: Indices,  Prev: GNU Free Documentation License,  Up
 * Concept index::
 
 
-File: docZhmEFa.info,  Node: Function index,  Next: Variable index,  Up: Indices
+File: docRtdkIk.info,  Node: Function index,  Next: Variable index,  Up: Indices
 
 6.1 Function index
 ==================
@@ -738,7 +738,7 @@ File: docZhmEFa.info,  Node: Function index,  Next: Variable index,  Up: Indices
 * show-font-select-preview:              Overview.             (line  9)
 
 
-File: docZhmEFa.info,  Node: Variable index,  Next: Concept index,  Prev: Function index,  Up: Indices
+File: docRtdkIk.info,  Node: Variable index,  Next: Concept index,  Prev: Function index,  Up: Indices
 
 6.2 Variable index
 ==================
@@ -758,7 +758,7 @@ File: docZhmEFa.info,  Node: Variable index,  Next: Concept index,  Prev: Functi
 * show-font-title-small:                 Overview.             (line 52)
 
 
-File: docZhmEFa.info,  Node: Concept index,  Prev: Variable index,  Up: Indices
+File: docRtdkIk.info,  Node: Concept index,  Prev: Variable index,  Up: Indices
 
 6.3 Concept index
 =================
