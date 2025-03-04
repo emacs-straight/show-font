@@ -1,4 +1,4 @@
-This is doc1svdid.info, produced by makeinfo version 6.8 from
+This is docVBNS4j.info, produced by makeinfo version 6.8 from
 show-font.texi.
 
 Copyright (C) 2024-2025 Free Software Foundation, Inc.
@@ -20,7 +20,7 @@ START-INFO-DIR-ENTRY
 END-INFO-DIR-ENTRY
 
 
-File: doc1svdid.info,  Node: Top,  Next: Overview,  Up: (dir)
+File: docVBNS4j.info,  Node: Top,  Next: Overview,  Up: (dir)
 
 show-font: preview fonts
 ************************
@@ -87,7 +87,7 @@ Indices
 
 
 
-File: doc1svdid.info,  Node: Overview,  Next: Installation,  Prev: Top,  Up: Top
+File: docVBNS4j.info,  Node: Overview,  Next: Installation,  Prev: Top,  Up: Top
 
 1 Overview
 **********
@@ -99,16 +99,14 @@ Emacs.  This can be done in the following ways:
      prompt with completion for a font on the system.  The selected font
      is then displayed in a bespoke buffer.
 
-   • The command ‘show-font-list’ produces a list with all the fonts
-     available on the system.  Each font on display is styled with its
-     given character set.  With an optional prefix argument (‘C-u’ by
-     default), it prompt for a string or regular expression to limit the
-     list of fonts to only the matching ones.
-
-   • The command ‘show-font-tabulated’ is almost the same as
-     ‘show-font-list’ except it uses the built-in Emacs framework of a
-     tabulated view.  Concretely, users can sort by column and may
-     prefer the slightly more compact listing.
+   • The command ‘show-font-tabulated’ produces a list with all the
+     fonts available on the system.  Each font on display is styled with
+     its given character set.  With an optional prefix argument (‘C-u’
+     by default), it prompt for a string or regular expression to limit
+     the list of fonts to only the matching ones.  In this tabulated
+     interface, users can sort by column and may prefer the slightly
+     more compact listing.  [ The command ‘show-font-list’ is an
+     obsolete alias of ‘show-font-tabulated’ as part of 0.3.0-dev.  ]
 
    • The ‘show-font-mode’ is a major mode that gets activated when the
      user visits a ‘.ttf’ or ‘.otf’ file.  It will preview with the
@@ -149,14 +147,16 @@ elements.
 
    • ‘show-font-title’
 
-   • ‘show-font-title-small’
+   • ‘show-font-title-in-listing’ [ The face ‘show-font-title-small’ is
+     an obsolete alias of ‘show-font-title-in-listing’ as part of
+     0.3.0-dev.  ]
 
    • ‘show-font-misc’
 
    • ‘show-font-button’
 
 
-File: doc1svdid.info,  Node: Installation,  Next: Sample configuration,  Prev: Overview,  Up: Top
+File: docVBNS4j.info,  Node: Installation,  Next: Sample configuration,  Prev: Overview,  Up: Top
 
 2 Installation
 **************
@@ -167,7 +167,7 @@ File: doc1svdid.info,  Node: Installation,  Next: Sample configuration,  Prev: O
 * Manual installation::
 
 
-File: doc1svdid.info,  Node: GNU ELPA package,  Next: Manual installation,  Up: Installation
+File: docVBNS4j.info,  Node: GNU ELPA package,  Next: Manual installation,  Up: Installation
 
 2.1 GNU ELPA package
 ====================
@@ -186,7 +186,7 @@ archive.  Read:
 <https://protesilaos.com/codelog/2022-05-13-emacs-elpa-devel/>.
 
 
-File: doc1svdid.info,  Node: Manual installation,  Prev: GNU ELPA package,  Up: Installation
+File: docVBNS4j.info,  Node: Manual installation,  Prev: GNU ELPA package,  Up: Installation
 
 2.2 Manual installation
 =======================
@@ -213,7 +213,7 @@ following commands in a shell prompt:
    Everything is in place to set up the package.
 
 
-File: doc1svdid.info,  Node: Sample configuration,  Next: Acknowledgements,  Prev: Installation,  Up: Top
+File: docVBNS4j.info,  Node: Sample configuration,  Next: Acknowledgements,  Prev: Installation,  Up: Top
 
 3 Sample configuration
 **********************
@@ -221,11 +221,18 @@ File: doc1svdid.info,  Node: Sample configuration,  Next: Acknowledgements,  Pre
      (require 'show-font)
 
      (define-key global-map (kbd "C-c s f") #'show-font-select-preview)
-     (define-key global-map (kbd "C-c s l") #'show-font-list)
      (define-key global-map (kbd "C-c s t") #'show-font-tabulated)
 
+   Or with ‘use-package’:
+
+     (use-package show-font
+       :ensure t
+       :bind
+       (("C-c s f" . show-font-select-preview)
+        ("C-c s t" . show-font-tabulated)))
+
 
-File: doc1svdid.info,  Node: Acknowledgements,  Next: GNU Free Documentation License,  Prev: Sample configuration,  Up: Top
+File: docVBNS4j.info,  Node: Acknowledgements,  Next: GNU Free Documentation License,  Prev: Sample configuration,  Up: Top
 
 4 Acknowledgements
 ******************
@@ -243,7 +250,7 @@ Ideas and/or user feedback
      Darryl Hebbes, Perry Metzger.
 
 
-File: doc1svdid.info,  Node: GNU Free Documentation License,  Next: Indices,  Prev: Acknowledgements,  Up: Top
+File: docVBNS4j.info,  Node: GNU Free Documentation License,  Next: Indices,  Prev: Acknowledgements,  Up: Top
 
 5 GNU Free Documentation License
 ********************************
@@ -725,7 +732,7 @@ software license, such as the GNU General Public License, to permit
 their use in free software.
 
 
-File: doc1svdid.info,  Node: Indices,  Prev: GNU Free Documentation License,  Up: Top
+File: docVBNS4j.info,  Node: Indices,  Prev: GNU Free Documentation License,  Up: Top
 
 6 Indices
 *********
@@ -737,7 +744,7 @@ File: doc1svdid.info,  Node: Indices,  Prev: GNU Free Documentation License,  Up
 * Concept index::
 
 
-File: doc1svdid.info,  Node: Function index,  Next: Variable index,  Up: Indices
+File: docVBNS4j.info,  Node: Function index,  Next: Variable index,  Up: Indices
 
 6.1 Function index
 ==================
@@ -745,14 +752,13 @@ File: doc1svdid.info,  Node: Function index,  Next: Variable index,  Up: Indices
  [index ]
 * Menu:
 
-* show-font-list:                        Overview.             (line 13)
-* show-font-mode:                        Overview.             (line 24)
-* show-font-pangram-p:                   Overview.             (line 39)
+* show-font-mode:                        Overview.             (line 22)
+* show-font-pangram-p:                   Overview.             (line 37)
 * show-font-select-preview:              Overview.             (line  9)
-* show-font-tabulated:                   Overview.             (line 19)
+* show-font-tabulated:                   Overview.             (line 13)
 
 
-File: doc1svdid.info,  Node: Variable index,  Next: Concept index,  Prev: Function index,  Up: Indices
+File: docVBNS4j.info,  Node: Variable index,  Next: Concept index,  Prev: Function index,  Up: Indices
 
 6.2 Variable index
 ==================
@@ -761,19 +767,19 @@ File: doc1svdid.info,  Node: Variable index,  Next: Concept index,  Prev: Functi
 * Menu:
 
 * show-font-button:                      Overview.             (line 67)
-* show-font-character-sample:            Overview.             (line 43)
-* show-font-display-buffer-action-alist: Overview.             (line 30)
-* show-font-large:                       Overview.             (line 59)
-* show-font-medium:                      Overview.             (line 57)
+* show-font-character-sample:            Overview.             (line 41)
+* show-font-display-buffer-action-alist: Overview.             (line 28)
+* show-font-large:                       Overview.             (line 57)
+* show-font-medium:                      Overview.             (line 55)
 * show-font-misc:                        Overview.             (line 65)
-* show-font-pangram:                     Overview.             (line 34)
-* show-font-regular:                     Overview.             (line 55)
-* show-font-small:                       Overview.             (line 53)
-* show-font-title:                       Overview.             (line 61)
-* show-font-title-small:                 Overview.             (line 63)
+* show-font-pangram:                     Overview.             (line 32)
+* show-font-regular:                     Overview.             (line 53)
+* show-font-small:                       Overview.             (line 51)
+* show-font-title:                       Overview.             (line 59)
+* show-font-title-in-listing:            Overview.             (line 61)
 
 
-File: doc1svdid.info,  Node: Concept index,  Prev: Variable index,  Up: Indices
+File: docVBNS4j.info,  Node: Concept index,  Prev: Variable index,  Up: Indices
 
 6.3 Concept index
 =================
@@ -789,16 +795,16 @@ File: doc1svdid.info,  Node: Concept index,  Prev: Variable index,  Up: Indices
 Tag Table:
 Node: Top826
 Node: Overview2933
-Node: Installation5630
-Node: GNU ELPA package5817
-Node: Manual installation6381
-Node: Sample configuration7162
-Node: Acknowledgements7547
-Node: GNU Free Documentation License7995
-Node: Indices33338
-Node: Function index33514
-Node: Variable index34024
-Node: Concept index34994
+Node: Installation5745
+Node: GNU ELPA package5932
+Node: Manual installation6496
+Node: Sample configuration7277
+Node: Acknowledgements7781
+Node: GNU Free Documentation License8229
+Node: Indices33572
+Node: Function index33748
+Node: Variable index34185
+Node: Concept index35155
 
 End Tag Table
 

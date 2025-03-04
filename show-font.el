@@ -152,10 +152,15 @@ action alist."
   "Face for font preview title."
   :group 'show-font-faces)
 
-(defface show-font-title-small
-  `((default :height 2.0)
+(define-obsolete-face-alias
+ 'show-font-title-small
+ 'show-font-title-in-listing
+ "0.3.0")
+
+(defface show-font-title-in-listing
+  `((default :height 1.0)
     ,@show-font-title-common)
-  "Face for smaller font preview title."
+  "Face for font preview title in listings (see `show-font-tabulated')."
   :group 'show-font-faces)
 
 (defface show-font-misc '((t :inherit shadow))
@@ -330,9 +335,8 @@ instead of that of the file."
        (if (not (equal name family))
            (concat
             "\n"
-            (propertize "Rendered with parent family:" 'face (list 'show-font-regular :family family))
-            "\n"
-            (propertize family 'face (list 'show-font-title-small :family family))
+            (propertize "Rendered with parent family: " 'face (list 'show-font-regular :family family))
+            (propertize family 'face (list 'show-font-regular :family family))
             "\n"
             (make-separator-line))
          "")
@@ -403,9 +407,7 @@ Optional REGEXP has the same meaning as in the aforementioned function."
   "Prepare a preview for font FAMILY.
 When called interactively, prompt for FAMILY.  When called from Lisp,
 FAMILY is a string that satisfies `show-font-installed-p'."
-  (interactive
-   (list
-    (show-font--select-preview-prompt)))
+  (interactive (list (show-font--select-preview-prompt)))
   (if (show-font-installed-p family)
       (show-font-with-preview-buffer (format "*show-font preview of `%s'*" family)
         (save-excursion
@@ -427,37 +429,10 @@ FAMILY is a string that satisfies `show-font-installed-p'."
      (format-prompt "Fonts matching REGEXP" default)
      nil 'show-font-regexp-history default)))
 
-;;;###autoload
-(defun show-font-list (&optional regexp)
-  "Produce a list of installed fonts with `show-font-pangram' preview text.
-With optional REGEXP as a prefix argument, prompt for a string or
-regular expression to list only fonts matching the given input.
-Otherwise, list all installed fonts."
-  (interactive
-   (list
-    (when current-prefix-arg
-      (show-font-regexp-prompt))))
-  ;; FIXME 2024-09-06: Here we should only list fonts that can display
-  ;; the pangram OR, better, we should have something appropriate to
-  ;; show for them (e.g. emoji for the Emoji font).
-  (show-font-with-preview-buffer (if regexp
-                                     (format-message "*show-font preview matching `%s'*" regexp)
-                                   "*show-font preview of all installed fonts*")
-    (save-excursion
-      (let* ((counter 1)
-             (counter-string (lambda () (concat (number-to-string counter)  ". "))))
-        (dolist (family (show-font-get-installed-font-families regexp))
-          (insert (concat
-                   (propertize (funcall counter-string) 'face 'show-font-misc)
-                   (propertize family 'face (list 'show-font-title-small :family family))
-                   "\n"
-                   (make-string (length (funcall counter-string)) ?\s)
-                   (propertize (show-font--get-pangram) 'face (list 'show-font-regular :family family))))
-          (insert "\n\n")
-          (setq counter (+ counter 1)))))
-    (setq-local revert-buffer-function
-                (lambda (_ignore-auto _noconfirm)
-                  (show-font-list)))))
+(define-obsolete-function-alias
+  'show-font-list
+  'show-font-tabulated
+  "0.3.0")
 
 (defun show-font--list-families (&optional regexp)
   "Return a list of propertized family strings for `show-font-list'.
@@ -468,7 +443,7 @@ Optional REGEXP has the meaning documented in the function
      (list
       family
       (vector
-       (propertize family 'face (list 'show-font-title-small :family family))
+       (propertize family 'face (list 'show-font-title-in-listing :family family))
        (propertize (show-font--get-pangram) 'face (list 'show-font-regular :family family)))))
    (show-font-get-installed-font-families regexp)))
 
@@ -493,10 +468,7 @@ Only `let' bind this while calling `show-font-tabulated-mode'.")
 With optional REGEXP as a prefix argument, prompt for a string or
 regular expression to list only fonts matching the given input.
 Otherwise, list all installed fonts."
-  (interactive
-   (list
-    (when current-prefix-arg
-      (show-font-regexp-prompt))))
+  (interactive (list (when current-prefix-arg (show-font-regexp-prompt))))
   (let ((buffer (get-buffer-create "*show-font-list*")))
     (with-current-buffer buffer
       (let ((show-font-tabulated-current-regexp regexp))

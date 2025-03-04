@@ -56,18 +56,15 @@ Emacs. This can be done in the following ways:
   prompt with completion for a font on the system. The selected
   font is then displayed in a bespoke buffer.
 
-#+findex: show-font-list
-- The command ~show-font-list~ produces a list with all the fonts
+#+findex: show-font-tabulated
+- The command ~show-font-tabulated~ produces a list with all the fonts
   available on the system. Each font on display is styled with its
   given character set. With an optional prefix argument (=C-u= by
   default), it prompt for a string or regular expression to limit the
-  list of fonts to only the matching ones.
-
-#+findex: show-font-tabulated
-- The command ~show-font-tabulated~ is almost the same as
-  ~show-font-list~ except it uses the built-in Emacs framework of a
-  tabulated view. Concretely, users can sort by column and may prefer
-  the slightly more compact listing.
+  list of fonts to only the matching ones. In this tabulated
+  interface, users can sort by column and may prefer the slightly more
+  compact listing. [ The command ~show-font-list~ is an obsolete alias
+  of ~show-font-tabulated~ as part of {{{development-version}}}. ]
 
 #+findex: show-font-mode
 - The ~show-font-mode~ is a major mode that gets activated when the
@@ -118,8 +115,10 @@ elements.
 #+vindex: show-font-title
 - ~show-font-title~
 
-#+vindex: show-font-title-small
-- ~show-font-title-small~
+#+vindex: show-font-title-in-listing
+- ~show-font-title-in-listing~ [ The face ~show-font-title-small~ is
+  an obsolete alias of ~show-font-title-in-listing~ as part of
+  {{{development-version}}}. ]
 
 #+vindex: show-font-misc
 - ~show-font-misc~
@@ -189,8 +188,17 @@ Everything is in place to set up the package.
 (require 'show-font)
 
 (define-key global-map (kbd "C-c s f") #'show-font-select-preview)
-(define-key global-map (kbd "C-c s l") #'show-font-list)
 (define-key global-map (kbd "C-c s t") #'show-font-tabulated)
+#+end_src
+
+Or with ~use-package~:
+
+#+begin_src emacs-lisp
+(use-package show-font
+  :ensure t
+  :bind
+  (("C-c s f" . show-font-select-preview)
+   ("C-c s t" . show-font-tabulated)))
 #+end_src
 
 * Acknowledgements

@@ -1,2 +1,2 @@
-;; Generated package description from show-font.el  -*- no-byte-compile: t -*-
-(define-package "show-font" "0.2.1.0.20250212.65316" "Show font features in a buffer" '((emacs "28.1")) :commit "65131657b499d779c20db6c4436410b4f17fbfb7" :authors '(("Protesilaos Stavrou" . "info@protesilaos.com")) :maintainer '("Protesilaos Stavrou" . "info@protesilaos.com") :keywords '("convenience" "writing" "font") :url "https://github.com/protesilaos/show-font")
+;; Generated package description from show-font.el  -*- mode: lisp-data; no-byte-compile: t -*-
+(define-package "show-font" "0.2.1.0.20250303.51849" "Show font features in a buffer" '((emacs "28.1")) :commit "7af59f87ce24fa3cac7cd5a3996749fd856eae43" :authors '(("Protesilaos Stavrou" . "info@protesilaos.com")) :maintainer '("Protesilaos Stavrou" . "info@protesilaos.com") :keywords '("convenience" "writing" "font") :url "https://github.com/protesilaos/show-font")
