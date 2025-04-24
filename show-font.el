@@ -302,6 +302,10 @@ FILE must be of type TTF or OTF and must not already be installed (per
           (show-font--install f)))
       (user-error "`%s' is not a known font file (TTF or OTF); aborting" f))))
 
+(defun show-font--string-p (string)
+  "Return non-nil if STRING is a string that is not empty."
+  (and (stringp string) (not (string-blank-p string))))
+
 (defun show-font--prepare-text (&optional family)
   "Prepare pangram text at varying font heights for the current font file.
 With optional FAMILY, prepare a preview for the given font family
@@ -318,16 +322,18 @@ instead of that of the file."
           (list-of-blocks nil)
           (pangram (show-font--get-pangram))
           (name (or family (show-font--get-attribute-from-file "fullname")))
-          (family (or family (show-font--get-attribute-from-file "family"))))
+          (family (or family (show-font--get-attribute-from-file "family")))
+          (propertize-sample-p (show-font--string-p show-font-character-sample)))
       (dolist (face faces)
         (push (propertize pangram 'face (list face :family family)) list-of-lines)
         (push (propertize pangram 'face (list face :family family :slant 'italic)) list-of-lines)
         (push (propertize pangram 'face (list face :family family :weight 'bold)) list-of-lines)
         (push (propertize pangram 'face (list face :family family :slant 'italic :weight 'bold)) list-of-lines)
-        (push (propertize show-font-character-sample 'face (list face :family family)) list-of-blocks)
-        (push (propertize show-font-character-sample 'face (list face :family family :slant 'italic)) list-of-blocks)
-        (push (propertize show-font-character-sample 'face (list face :family family :weight 'bold)) list-of-blocks)
-        (push (propertize show-font-character-sample 'face (list face :family family :slant 'italic :weight 'bold)) list-of-blocks))
+        (when propertize-sample-p
+          (push (propertize show-font-character-sample 'face (list face :family family)) list-of-blocks)
+          (push (propertize show-font-character-sample 'face (list face :family family :slant 'italic)) list-of-blocks)
+          (push (propertize show-font-character-sample 'face (list face :family family :weight 'bold)) list-of-blocks)
+          (push (propertize show-font-character-sample 'face (list face :family family :slant 'italic :weight 'bold)) list-of-blocks)))
       (concat
        (propertize name 'face (list 'show-font-title :family family))
        "\n"
@@ -400,7 +406,8 @@ Optional REGEXP has the same meaning as in the aforementioned function."
   (let ((def (car show-font-select-preview-history)))
     (completing-read
      (format-prompt "Select font to preview" def)
-     (show-font-get-installed-font-families regexp))))
+     (show-font-get-installed-font-families regexp)
+     nil t nil 'show-font-select-preview-history)))
 
 ;;;###autoload
 (defun show-font-select-preview (family)
