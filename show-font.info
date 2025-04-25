@@ -1,4 +1,4 @@
-This is docbJQp9d.info, produced by makeinfo version 6.8 from
+This is docCJWBC9.info, produced by makeinfo version 6.8 from
 show-font.texi.
 
 Copyright (C) 2024-2025 Free Software Foundation, Inc.
@@ -20,7 +20,7 @@ START-INFO-DIR-ENTRY
 END-INFO-DIR-ENTRY
 
 
-File: docbJQp9d.info,  Node: Top,  Next: Overview,  Up: (dir)
+File: docCJWBC9.info,  Node: Top,  Next: Overview,  Up: (dir)
 
 show-font: preview fonts
 ************************
@@ -87,7 +87,7 @@ Indices
 
 
 
-File: docbJQp9d.info,  Node: Overview,  Next: Installation,  Prev: Top,  Up: Top
+File: docCJWBC9.info,  Node: Overview,  Next: Installation,  Prev: Top,  Up: Top
 
 1 Overview
 **********
@@ -132,7 +132,14 @@ character set that is intended for use in full buffer previews (i.e.
 not in the list of fonts).  It can be set to any string.  The default
 value is a set of alphanumeric characters that are commonly used in
 programming: a good monospaced font should render all of them
-unambiguously.
+unambiguously.  This text is shown in the buffer of the command
+‘show-font-select-preview’.
+
+   The user option ‘show-font-sentences-sample’ is a list of strings
+that can be used to showcase common patterns and letter combinations in
+words.  The default value should cover many such examples.  Those are
+displayed in the buffer produced by the command
+‘show-font-select-preview’.
 
    Finally, the following faces control the appearance of various
 elements.
@@ -156,7 +163,7 @@ elements.
    • ‘show-font-button’
 
 
-File: docbJQp9d.info,  Node: Installation,  Next: Sample configuration,  Prev: Overview,  Up: Top
+File: docCJWBC9.info,  Node: Installation,  Next: Sample configuration,  Prev: Overview,  Up: Top
 
 2 Installation
 **************
@@ -167,7 +174,7 @@ File: docbJQp9d.info,  Node: Installation,  Next: Sample configuration,  Prev: O
 * Manual installation::
 
 
-File: docbJQp9d.info,  Node: GNU ELPA package,  Next: Manual installation,  Up: Installation
+File: docCJWBC9.info,  Node: GNU ELPA package,  Next: Manual installation,  Up: Installation
 
 2.1 GNU ELPA package
 ====================
@@ -186,7 +193,7 @@ archive.  Read:
 <https://protesilaos.com/codelog/2022-05-13-emacs-elpa-devel/>.
 
 
-File: docbJQp9d.info,  Node: Manual installation,  Prev: GNU ELPA package,  Up: Installation
+File: docCJWBC9.info,  Node: Manual installation,  Prev: GNU ELPA package,  Up: Installation
 
 2.2 Manual installation
 =======================
@@ -213,7 +220,7 @@ following commands in a shell prompt:
    Everything is in place to set up the package.
 
 
-File: docbJQp9d.info,  Node: Sample configuration,  Next: Acknowledgements,  Prev: Installation,  Up: Top
+File: docCJWBC9.info,  Node: Sample configuration,  Next: Acknowledgements,  Prev: Installation,  Up: Top
 
 3 Sample configuration
 **********************
@@ -232,7 +239,7 @@ File: docbJQp9d.info,  Node: Sample configuration,  Next: Acknowledgements,  Pre
         ("C-c s t" . show-font-tabulated)))
 
 
-File: docbJQp9d.info,  Node: Acknowledgements,  Next: GNU Free Documentation License,  Prev: Sample configuration,  Up: Top
+File: docCJWBC9.info,  Node: Acknowledgements,  Next: GNU Free Documentation License,  Prev: Sample configuration,  Up: Top
 
 4 Acknowledgements
 ******************
@@ -250,7 +257,7 @@ Ideas and/or user feedback
      Darryl Hebbes, Perry Metzger.
 
 
-File: docbJQp9d.info,  Node: GNU Free Documentation License,  Next: Indices,  Prev: Acknowledgements,  Up: Top
+File: docCJWBC9.info,  Node: GNU Free Documentation License,  Next: Indices,  Prev: Acknowledgements,  Up: Top
 
 5 GNU Free Documentation License
 ********************************
@@ -732,7 +739,7 @@ software license, such as the GNU General Public License, to permit
 their use in free software.
 
 
-File: docbJQp9d.info,  Node: Indices,  Prev: GNU Free Documentation License,  Up: Top
+File: docCJWBC9.info,  Node: Indices,  Prev: GNU Free Documentation License,  Up: Top
 
 6 Indices
 *********
@@ -744,7 +751,7 @@ File: docbJQp9d.info,  Node: Indices,  Prev: GNU Free Documentation License,  Up
 * Concept index::
 
 
-File: docbJQp9d.info,  Node: Function index,  Next: Variable index,  Up: Indices
+File: docCJWBC9.info,  Node: Function index,  Next: Variable index,  Up: Indices
 
 6.1 Function index
 ==================
@@ -758,7 +765,7 @@ File: docbJQp9d.info,  Node: Function index,  Next: Variable index,  Up: Indices
 * show-font-tabulated:                   Overview.             (line 13)
 
 
-File: docbJQp9d.info,  Node: Variable index,  Next: Concept index,  Prev: Function index,  Up: Indices
+File: docCJWBC9.info,  Node: Variable index,  Next: Concept index,  Prev: Function index,  Up: Indices
 
 6.2 Variable index
 ==================
@@ -766,20 +773,21 @@ File: docbJQp9d.info,  Node: Variable index,  Next: Concept index,  Prev: Functi
  [index ]
 * Menu:
 
-* show-font-button:                      Overview.             (line 67)
+* show-font-button:                      Overview.             (line 74)
 * show-font-character-sample:            Overview.             (line 41)
 * show-font-display-buffer-action-alist: Overview.             (line 28)
-* show-font-large:                       Overview.             (line 57)
-* show-font-medium:                      Overview.             (line 55)
-* show-font-misc:                        Overview.             (line 65)
+* show-font-large:                       Overview.             (line 64)
+* show-font-medium:                      Overview.             (line 62)
+* show-font-misc:                        Overview.             (line 72)
 * show-font-pangram:                     Overview.             (line 32)
-* show-font-regular:                     Overview.             (line 53)
-* show-font-small:                       Overview.             (line 51)
-* show-font-title:                       Overview.             (line 59)
-* show-font-title-in-listing:            Overview.             (line 61)
+* show-font-regular:                     Overview.             (line 60)
+* show-font-sentences-sample:            Overview.             (line 49)
+* show-font-small:                       Overview.             (line 58)
+* show-font-title:                       Overview.             (line 66)
+* show-font-title-in-listing:            Overview.             (line 68)
 
 
-File: docbJQp9d.info,  Node: Concept index,  Prev: Variable index,  Up: Indices
+File: docCJWBC9.info,  Node: Concept index,  Prev: Variable index,  Up: Indices
 
 6.3 Concept index
 =================
@@ -795,16 +803,16 @@ File: docbJQp9d.info,  Node: Concept index,  Prev: Variable index,  Up: Indices
 Tag Table:
 Node: Top826
 Node: Overview2933
-Node: Installation5745
-Node: GNU ELPA package5932
-Node: Manual installation6496
-Node: Sample configuration7277
-Node: Acknowledgements7781
-Node: GNU Free Documentation License8229
-Node: Indices33572
-Node: Function index33748
-Node: Variable index34185
-Node: Concept index35155
+Node: Installation6122
+Node: GNU ELPA package6309
+Node: Manual installation6873
+Node: Sample configuration7654
+Node: Acknowledgements8158
+Node: GNU Free Documentation License8606
+Node: Indices33949
+Node: Function index34125
+Node: Variable index34562
+Node: Concept index35605
 
 End Tag Table
 
