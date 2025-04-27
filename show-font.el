@@ -5,7 +5,7 @@
 ;; Author: Protesilaos Stavrou <info@protesilaos.com>
 ;; Maintainer: Protesilaos Stavrou <info@protesilaos.com>
 ;; URL: https://github.com/protesilaos/show-font
-;; Version: 0.2.1
+;; Version: 0.3.0
 ;; Package-Requires: ((emacs "29.1"))
 ;; Keywords: convenience, writing, font
 
@@ -501,11 +501,6 @@ FAMILY is a string that satisfies `show-font-installed-p'."
      (format-prompt "Fonts matching REGEXP" default)
      nil 'show-font-regexp-history default)))
 
-(define-obsolete-function-alias
-  'show-font-list
-  'show-font-tabulated
-  "0.3.0")
-
 (defun show-font--list-families (&optional regexp)
   "Return a list of propertized family strings for `show-font-list'.
 Optional REGEXP has the meaning documented in the function
@@ -556,6 +551,9 @@ Otherwise, list all installed fonts."
       (let ((show-font-tabulated-current-regexp regexp))
         (show-font-tabulated-mode)))
     (display-buffer buffer show-font-display-buffer-action-alist)))
+
+(defalias 'show-font-list 'show-font-tabulated
+  "Alias for `show-font-tabulated'.")
 
 ;;;; Major mode to preview the font of the current TTF or OTF file
 

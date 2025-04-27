@@ -10,11 +10,11 @@ This manual, written by Protesilaos Stavrou, describes the customization
 options for the Emacs package called `show-font' (or `show-font.el'),
 and provides every other piece of information pertinent to it.
 
-The documentation furnished herein corresponds to stable version 0.2.0,
-released on 2025-01-25.  Any reference to a newer feature which does not
+The documentation furnished herein corresponds to stable version 0.3.0,
+released on 2025-04-26.  Any reference to a newer feature which does not
 yet form part of the latest tagged commit, is explicitly marked as such.
 
-Current development target is 0.3.0-dev.
+Current development target is 0.4.0-dev.
 
 ⁃ Package name (GNU ELPA): `show-font'
 ⁃ Official manual: <https://protesilaos.com/emacs/show-font>
@@ -31,11 +31,11 @@ the GNU ELPA machinery automatically generates an Info manual out of it.
 Table of Contents
 ─────────────────
 
-1. Overview
-2. Installation
+1. Installation
 .. 1. GNU ELPA package
 .. 2. Manual installation
-3. Sample configuration
+2. Sample configuration
+3. Overview
 4. Acknowledgements
 5. COPYING
 6. GNU Free Documentation License
@@ -45,7 +45,83 @@ Table of Contents
 .. 3. Concept index
 
 
-1 Overview
+1 Installation
+══════════════
+
+
+
+
+1.1 GNU ELPA package
+────────────────────
+
+  The package is available as `show-font'.  Simply do:
+
+  ┌────
+  │ M-x package-refresh-contents
+  │ M-x package-install
+  └────
+
+
+  And search for it.
+
+  GNU ELPA provides the latest stable release.  Those who prefer to
+  follow the development process in order to report bugs or suggest
+  changes, can use the version of the package from the GNU-devel ELPA
+  archive.  Read:
+  <https://protesilaos.com/codelog/2022-05-13-emacs-elpa-devel/>.
+
+
+1.2 Manual installation
+───────────────────────
+
+  Assuming your Emacs files are found in `~/.emacs.d/', execute the
+  following commands in a shell prompt:
+
+  ┌────
+  │ cd ~/.emacs.d
+  │ 
+  │ # Create a directory for manually-installed packages
+  │ mkdir manual-packages
+  │ 
+  │ # Go to the new directory
+  │ cd manual-packages
+  │ 
+  │ # Clone this repo, naming it "show-font"
+  │ git clone https://github.com/protesilaos/show-font show-font
+  └────
+
+  Finally, in your `init.el' (or equivalent) evaluate this:
+
+  ┌────
+  │ ;; Make Elisp files in that directory available to the user.
+  │ (add-to-list 'load-path "~/.emacs.d/manual-packages/show-font")
+  └────
+
+  Everything is in place to set up the package.
+
+
+2 Sample configuration
+══════════════════════
+
+  ┌────
+  │ (require 'show-font)
+  │ 
+  │ (define-key global-map (kbd "C-c s f") #'show-font-select-preview)
+  │ (define-key global-map (kbd "C-c s t") #'show-font-tabulated)
+  └────
+
+  Or with `use-package':
+
+  ┌────
+  │ (use-package show-font
+  │   :ensure t
+  │   :bind
+  │   (("C-c s f" . show-font-select-preview)
+  │    ("C-c s t" . show-font-tabulated)))
+  └────
+
+
+3 Overview
 ══════════
 
   With `show-font' the user has the means to preview fonts inside of
@@ -55,14 +131,13 @@ Table of Contents
     with completion for a font on the system. The selected font is then
     displayed in a bespoke buffer.
 
-  • The command `show-font-tabulated' produces a list with all the fonts
-    available on the system. Each font on display is styled with its
-    given character set. With an optional prefix argument (`C-u' by
-    default), it prompt for a string or regular expression to limit the
-    list of fonts to only the matching ones. In this tabulated
-    interface, users can sort by column and may prefer the slightly more
-    compact listing. [ The command `show-font-list' is an obsolete alias
-    of `show-font-tabulated' as part of 0.3.0-dev. ]
+  • The command `show-font-tabulated' (alias `show-font-list') produces
+    a list with all the fonts available on the system. Each font on
+    display is styled with its given character set. With an optional
+    prefix argument (`C-u' by default), it prompt for a string or
+    regular expression to limit the list of fonts to only the matching
+    ones. In this tabulated interface, users can sort by column and may
+    prefer the slightly more compact listing.
 
   • The `show-font-mode' is a major mode that gets activated when the
     user visits a `.ttf' or `.otf' file. It will preview with the font,
@@ -110,89 +185,11 @@ Table of Contents
 
   • `show-font-title'
 
-  • `show-font-title-in-listing' [ The face `show-font-title-small' is
-    an obsolete alias of `show-font-title-in-listing' as part of
-    0.3.0-dev. ]
+  • `show-font-title-in-listing'
 
   • `show-font-misc'
 
   • `show-font-button'
-
-
-2 Installation
-══════════════
-
-
-
-
-2.1 GNU ELPA package
-────────────────────
-
-  The package is available as `show-font'.  Simply do:
-
-  ┌────
-  │ M-x package-refresh-contents
-  │ M-x package-install
-  └────
-
-
-  And search for it.
-
-  GNU ELPA provides the latest stable release.  Those who prefer to
-  follow the development process in order to report bugs or suggest
-  changes, can use the version of the package from the GNU-devel ELPA
-  archive.  Read:
-  <https://protesilaos.com/codelog/2022-05-13-emacs-elpa-devel/>.
-
-
-2.2 Manual installation
-───────────────────────
-
-  Assuming your Emacs files are found in `~/.emacs.d/', execute the
-  following commands in a shell prompt:
-
-  ┌────
-  │ cd ~/.emacs.d
-  │ 
-  │ # Create a directory for manually-installed packages
-  │ mkdir manual-packages
-  │ 
-  │ # Go to the new directory
-  │ cd manual-packages
-  │ 
-  │ # Clone this repo, naming it "show-font"
-  │ git clone https://github.com/protesilaos/show-font show-font
-  └────
-
-  Finally, in your `init.el' (or equivalent) evaluate this:
-
-  ┌────
-  │ ;; Make Elisp files in that directory available to the user.
-  │ (add-to-list 'load-path "~/.emacs.d/manual-packages/show-font")
-  └────
-
-  Everything is in place to set up the package.
-
-
-3 Sample configuration
-══════════════════════
-
-  ┌────
-  │ (require 'show-font)
-  │ 
-  │ (define-key global-map (kbd "C-c s f") #'show-font-select-preview)
-  │ (define-key global-map (kbd "C-c s t") #'show-font-tabulated)
-  └────
-
-  Or with `use-package':
-
-  ┌────
-  │ (use-package show-font
-  │   :ensure t
-  │   :bind
-  │   (("C-c s f" . show-font-select-preview)
-  │    ("C-c s t" . show-font-tabulated)))
-  └────
 
 
 4 Acknowledgements
