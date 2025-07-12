@@ -5,7 +5,7 @@
 ;; Author: Protesilaos Stavrou <info@protesilaos.com>
 ;; Maintainer: Protesilaos Stavrou <info@protesilaos.com>
 ;; URL: https://github.com/protesilaos/show-font
-;; Version: 0.3.0
+;; Version: 0.3.1
 ;; Package-Requires: ((emacs "29.1"))
 ;; Keywords: convenience, writing, font
 
@@ -218,21 +218,20 @@ return nil."
 (defun show-font-handler (operation &rest args)
   "Handle the given I/O `file-name-handler-alist' OPERATION with ARGS.
 Determine how to render the font file contents in a buffer."
-  (cond
-   ((eq operation 'insert-file-contents)
-    (when-let* ((filename (car args))
-                (visit (cadr args)))
-      (setq buffer-file-name filename)
-      (list buffer-file-name (point-max)))
-    (show-font--add-text))
-   ;; Handle any operation we do not know about.  This is copied from
-   ;; the example shown in (info "(elisp) Magic File Names").
-   (t (let ((inhibit-file-name-handlers
-             (cons #'show-font-handler
-                   (and (eq inhibit-file-name-operation operation)
-                        inhibit-file-name-handlers)))
-            (inhibit-file-name-operation operation))
-        (apply operation args)))))
+  ;; Handle any operation we do not know about.  This is copied from
+  ;; the example shown in (info "(elisp) Magic File Names").
+  (if-let* ((_ (eq operation 'insert-file-contents))
+            (filename (car args))
+            (visit (cadr args)))
+      (progn
+        (setq buffer-file-name filename)
+        (show-font--add-text))
+    (let ((inhibit-file-name-handlers
+           (cons #'show-font-handler
+                 (and (eq inhibit-file-name-operation operation)
+                      inhibit-file-name-handlers)))
+          (inhibit-file-name-operation operation))
+      (apply operation args))))
 
 (defun show-font--get-attribute-from-file (attribute &optional file)
   "Get font family ATTRIBUTE from the current file or given FILE.
@@ -426,16 +425,17 @@ If FAMILY is nil, use the one of the current font file."
 
 (defun show-font--insert-button ()
   "Insert `show-font-installed-file-button' at point."
-  (insert
-   (concat (propertize "Cannot preview this font" 'face 'show-font-title)
-           "\n\n"
-           (propertize buffer-file-name 'face 'bold)
-           " is not installed"
-           "\n\n"
-           "Install this font file?"
-           "\n"))
-  (goto-char (point-max))
-  (make-text-button (line-beginning-position 0) (line-end-position 0) :type 'show-font-installed-file-button))
+  (when buffer-file-name
+    (insert
+     (concat (propertize "Cannot preview this font" 'face 'show-font-title)
+             "\n\n"
+             (propertize buffer-file-name 'face 'bold)
+             " is not installed"
+             "\n\n"
+             "Install this font file?"
+             "\n"))
+    (goto-char (point-max))
+    (make-text-button (line-beginning-position 0) (line-end-position 0) :type 'show-font-installed-file-button)))
 
 (defun show-font--add-text (&optional buffer)
   "Add the `show-font-pangram' as an overlay at `point-min'.
