@@ -1,4 +1,4 @@
-This is docvr8yy5.info, produced by makeinfo version 6.8 from
+This is docvJHWRw.info, produced by makeinfo version 6.8 from
 show-font.texi.
 
 Copyright (C) 2024-2025 Free Software Foundation, Inc.
@@ -20,7 +20,7 @@ START-INFO-DIR-ENTRY
 END-INFO-DIR-ENTRY
 
 
-File: docvr8yy5.info,  Node: Top,  Next: Installation,  Up: (dir)
+File: docvJHWRw.info,  Node: Top,  Next: Installation,  Up: (dir)
 
 show-font: preview fonts
 ************************
@@ -87,7 +87,7 @@ Indices
 
 
 
-File: docvr8yy5.info,  Node: Installation,  Next: Sample configuration,  Prev: Top,  Up: Top
+File: docvJHWRw.info,  Node: Installation,  Next: Sample configuration,  Prev: Top,  Up: Top
 
 1 Installation
 **************
@@ -98,7 +98,7 @@ File: docvr8yy5.info,  Node: Installation,  Next: Sample configuration,  Prev: T
 * Manual installation::
 
 
-File: docvr8yy5.info,  Node: GNU ELPA package,  Next: Manual installation,  Up: Installation
+File: docvJHWRw.info,  Node: GNU ELPA package,  Next: Manual installation,  Up: Installation
 
 1.1 GNU ELPA package
 ====================
@@ -117,7 +117,7 @@ archive.  Read:
 <https://protesilaos.com/codelog/2022-05-13-emacs-elpa-devel/>.
 
 
-File: docvr8yy5.info,  Node: Manual installation,  Prev: GNU ELPA package,  Up: Installation
+File: docvJHWRw.info,  Node: Manual installation,  Prev: GNU ELPA package,  Up: Installation
 
 1.2 Manual installation
 =======================
@@ -144,7 +144,7 @@ following commands in a shell prompt:
    Everything is in place to set up the package.
 
 
-File: docvr8yy5.info,  Node: Sample configuration,  Next: Overview,  Prev: Installation,  Up: Top
+File: docvJHWRw.info,  Node: Sample configuration,  Next: Overview,  Prev: Installation,  Up: Top
 
 2 Sample configuration
 **********************
@@ -163,7 +163,7 @@ File: docvr8yy5.info,  Node: Sample configuration,  Next: Overview,  Prev: Insta
         ("C-c s t" . show-font-tabulated)))
 
 
-File: docvr8yy5.info,  Node: Overview,  Next: Acknowledgements,  Prev: Sample configuration,  Up: Top
+File: docvJHWRw.info,  Node: Overview,  Next: Acknowledgements,  Prev: Sample configuration,  Up: Top
 
 3 Overview
 **********
@@ -236,7 +236,7 @@ elements.
    • ‘show-font-button’
 
 
-File: docvr8yy5.info,  Node: Acknowledgements,  Next: GNU Free Documentation License,  Prev: Overview,  Up: Top
+File: docvJHWRw.info,  Node: Acknowledgements,  Next: GNU Free Documentation License,  Prev: Overview,  Up: Top
 
 4 Acknowledgements
 ******************
@@ -254,7 +254,7 @@ Ideas and/or user feedback
      Darryl Hebbes, Perry Metzger, Zhengyi Fu.
 
 
-File: docvr8yy5.info,  Node: GNU Free Documentation License,  Next: Indices,  Prev: Acknowledgements,  Up: Top
+File: docvJHWRw.info,  Node: GNU Free Documentation License,  Next: Indices,  Prev: Acknowledgements,  Up: Top
 
 5 GNU Free Documentation License
 ********************************
@@ -736,7 +736,7 @@ software license, such as the GNU General Public License, to permit
 their use in free software.
 
 
-File: docvr8yy5.info,  Node: Indices,  Prev: GNU Free Documentation License,  Up: Top
+File: docvJHWRw.info,  Node: Indices,  Prev: GNU Free Documentation License,  Up: Top
 
 6 Indices
 *********
@@ -748,7 +748,7 @@ File: docvr8yy5.info,  Node: Indices,  Prev: GNU Free Documentation License,  Up
 * Concept index::
 
 
-File: docvr8yy5.info,  Node: Function index,  Next: Variable index,  Up: Indices
+File: docvJHWRw.info,  Node: Function index,  Next: Variable index,  Up: Indices
 
 6.1 Function index
 ==================
@@ -763,7 +763,7 @@ File: docvr8yy5.info,  Node: Function index,  Next: Variable index,  Up: Indices
 * show-font-tabulated:                   Overview.             (line 13)
 
 
-File: docvr8yy5.info,  Node: Variable index,  Next: Concept index,  Prev: Function index,  Up: Indices
+File: docvJHWRw.info,  Node: Variable index,  Next: Concept index,  Prev: Function index,  Up: Indices
 
 6.2 Variable index
 ==================
@@ -785,7 +785,7 @@ File: docvr8yy5.info,  Node: Variable index,  Next: Concept index,  Prev: Functi
 * show-font-title-in-listing:            Overview.             (line 67)
 
 
-File: docvr8yy5.info,  Node: Concept index,  Prev: Variable index,  Up: Indices
+File: docvJHWRw.info,  Node: Concept index,  Prev: Variable index,  Up: Indices
 
 6.3 Concept index
 =================
