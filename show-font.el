@@ -5,7 +5,7 @@
 ;; Author: Protesilaos Stavrou <info@protesilaos.com>
 ;; Maintainer: Protesilaos Stavrou <info@protesilaos.com>
 ;; URL: https://github.com/protesilaos/show-font
-;; Version: 0.3.1
+;; Version: 0.4.0
 ;; Package-Requires: ((emacs "29.1"))
 ;; Keywords: convenience, writing, font
 
@@ -43,6 +43,22 @@
   :link '(info-link "(show-font) Top")
   :link '(url-link :tag "Homepage" "https://protesilaos.com/emacs/show-font"))
 
+;; NOTE 2025-04-24: We do not need to check for capital letters.  A
+;; font that does not support those is a weird case that is not our
+;; problem.
+(defconst show-font-latin-characters
+  (number-sequence ?a ?z)
+  "The Latin lower-case characters.")
+
+(defconst show-font-icon-characters
+  (number-sequence #xE000 #xF8FF)
+  "A sequence of characters in the Unicode Private Use Area.
+The PUA is typically used by icon fonts.")
+
+(defconst show-font-emoji-characters
+  '(#x1F600 #x1F601 #x1F602 #x1F349)
+  "A sequence of characters in the emoji range.")
+
 ;; TODO 2024-09-06: How best to handle multiple languages?  Say there
 ;; is a font that only works with Greek characters.  We need to know
 ;; what characters the font supports.  Then we return the relevant
@@ -51,7 +67,7 @@
   '((fox . "The quick brown fox jumps over the lazy dog")
     (wizards . "Grumpy wizards make toxic brew for the evil queen and jack")
     (gunboats . "A quick movement of the enemy will jeopardize six gunboats")
-    (prot . "Prot may find zesty owls join quiet vixens as the night beckons"))
+    (prot . "Prot may find zesty owls and quiet jays vexing the black cat"))
   "Default list of pangrams.")
 
 (defcustom show-font-pangram 'prot
@@ -70,6 +86,25 @@ experimenting with `show-font-pangram-p'."
   :group 'show-font)
 
 ;; See TODO above about multiple languages.
+
+(defcustom show-font-emoji-sample
+  "😀😁😂🤣😃😄😅😆😉😊😋😎😍😘🥰"
+  "Character sample to showcase emoji fonts.
+This is displayed in the buffer produced by the command
+`show-font-select-preview' and `show-font-tabulated'."
+  :package-version '(show-font . "0.4.0")
+  :type 'string
+  :group 'show-font)
+
+(defcustom show-font-icon-sample
+  (mapconcat #'char-to-string (seq-take show-font-icon-characters 10))
+  "Character sample to showcase icon fonts.
+This is displayed in the buffer produced by the command
+`show-font-select-preview' and `show-font-tabulated'."
+  :package-version '(show-font . "0.4.0")
+  :type 'string
+  :group 'show-font)
+
 (defcustom show-font-character-sample
   "
 ABCDEFGHIJKLMNOPQRSTUVWXYZ
@@ -191,13 +226,6 @@ action alist."
 
 ;;;; Helper functions
 
-;; NOTE 2025-04-24: We do not need to check for capital letters.  A
-;; font that does not support those is a weird case that is not our
-;; problem.
-(defconst show-font-latin-characters
-  (number-sequence ?a ?z)
-  "The Latin lower-case characters.")
-
 (defun show-font-pangram-p (string &optional characters)
   "Return non-nil if STRING is a pangram.
 With optional CHARACTERS as a list of single character strings, test
@@ -285,6 +313,16 @@ With optional LAX if FAMILY can display at least one among the
 CHARACTERS."
   (show-font--displays-characters-p family show-font-latin-characters lax))
 
+(defun show-font--displays-emoji-p (family)
+  "Return non-nil if FAMILY is likely an emoji font."
+  (and (not (show-font--displays-latin-p family))
+       (show-font--displays-characters-p family show-font-emoji-characters :lax)))
+
+(defun show-font--displays-icon-p (family)
+  "Return non-nil if FAMILY is likely an icon font."
+  (and (not (show-font--displays-latin-p family))
+       (show-font--displays-characters-p family show-font-icon-characters :lax)))
+
 (defun show-font-installed-p (family &optional regexp)
   "Return non-nil if font family FAMILY is installed on the system.
 FAMILY is a string like those of `show-font-get-installed-font-families'.
@@ -355,61 +393,78 @@ FILE must be of type TTF or OTF and must not already be installed (per
   "Prepare pangram text at varying font heights for the current font file.
 With optional FAMILY, prepare a preview for the given font family
 instead of that of the file."
-  (cond
-   ((not (display-graphic-p))
-    (propertize "Fonts cannot be displayed in a terminal or TTY." 'face 'show-font-title))
-   ((and (not family)
-         (not (show-font-installed-file-p buffer-file-name)))
-    nil)
-   (t
-    (let* ((faces '(show-font-small show-font-regular show-font-medium show-font-large))
-           (list-of-lines nil)
-           (list-of-blocks nil)
-           (list-of-sentences nil)
-           (pangram (show-font--get-pangram))
-           (name (or family (show-font--get-attribute-from-file "fullname")))
-           (family (or family (show-font--get-attribute-from-file "family")))
-           (character-sample show-font-character-sample)
-           (propertize-sample-p (show-font--string-p character-sample)))
-      (dolist (face faces)
-        (push (propertize pangram 'face (list face :family family)) list-of-lines)
-        (push (propertize pangram 'face (list face :family family :slant 'italic)) list-of-lines)
-        (push (propertize pangram 'face (list face :family family :weight 'bold)) list-of-lines)
-        (push (propertize pangram 'face (list face :family family :slant 'italic :weight 'bold)) list-of-lines)
-        (when propertize-sample-p
-          (push (propertize character-sample 'face (list face :family family)) list-of-blocks)
-          (push (propertize character-sample 'face (list face :family family :slant 'italic)) list-of-blocks)
-          (push (propertize character-sample 'face (list face :family family :weight 'bold)) list-of-blocks)
-          (push (propertize character-sample 'face (list face :family family :slant 'italic :weight 'bold)) list-of-blocks))
-        (when show-font-sentences-sample
-          (dolist (sentence show-font-sentences-sample)
-            (when (show-font--string-p sentence)
-              (push (propertize sentence 'face (list face :family family)) list-of-sentences)
-              (push (propertize sentence 'face (list face :family family :slant 'italic)) list-of-sentences)
-              (push (propertize sentence 'face (list face :family family :weight 'bold)) list-of-sentences)
-              (push (propertize sentence 'face (list face :family family :slant 'italic :weight 'bold)) list-of-sentences)))))
-      (concat
-       (propertize name 'face (list 'show-font-title :family family))
-       "\n"
-       (make-separator-line)
-       (if (not (equal name family))
-           (concat
-            "\n"
-            (propertize "Rendered with parent family: " 'face (list 'show-font-regular :family family))
-            (propertize family 'face (list 'show-font-regular :family family))
-            "\n"
-            (make-separator-line))
-         "")
-       "\n"
-       (mapconcat #'identity (nreverse list-of-lines) "\n") "\n"
-       (mapconcat #'identity (nreverse list-of-blocks) "\n") "\n" "\n"
-       (mapconcat #'identity (nreverse list-of-sentences) "\n") "\n")))))
+  (let ((icon-or-emoji-n (lambda (family sample)
+                           (let  ((faces '(show-font-small show-font-regular show-font-medium show-font-large))
+                                  (character-sample nil))
+                             (dolist (face faces)
+                               (push (propertize sample 'face (list face :family family)) character-sample))
+                             (concat
+                              (propertize (or family (show-font--get-attribute-from-file "fullname")) 'face (list 'show-font-title :family "Monospace"))
+                              "\n"
+                              (make-separator-line)
+                              "\n"
+                              (mapconcat #'identity (nreverse character-sample) "\n"))))))
+    (cond
+     ((not (display-graphic-p))
+      (propertize "Fonts cannot be displayed in a terminal or TTY." 'face 'show-font-title))
+     ((and (not family)
+           (not (show-font-installed-file-p buffer-file-name)))
+      nil)
+     ((show-font--displays-emoji-p family)
+      (funcall icon-or-emoji-n family show-font-emoji-sample))
+     ((show-font--displays-icon-p family)
+      (funcall icon-or-emoji-n family show-font-icon-sample))
+     (t
+      (let* ((faces '(show-font-small show-font-regular show-font-medium show-font-large))
+             (list-of-lines nil)
+             (list-of-blocks nil)
+             (list-of-sentences nil)
+             (pangram (show-font--get-pangram))
+             (name (or family (show-font--get-attribute-from-file "fullname")))
+             (family (or family (show-font--get-attribute-from-file "family")))
+             (character-sample show-font-character-sample)
+             (propertize-sample-p (show-font--string-p character-sample)))
+        (dolist (face faces)
+          (push (propertize pangram 'face (list face :family family)) list-of-lines)
+          (push (propertize pangram 'face (list face :family family :slant 'italic)) list-of-lines)
+          (push (propertize pangram 'face (list face :family family :weight 'bold)) list-of-lines)
+          (push (propertize pangram 'face (list face :family family :slant 'italic :weight 'bold)) list-of-lines)
+          (when propertize-sample-p
+            (push (propertize character-sample 'face (list face :family family)) list-of-blocks)
+            (push (propertize character-sample 'face (list face :family family :slant 'italic)) list-of-blocks)
+            (push (propertize character-sample 'face (list face :family family :weight 'bold)) list-of-blocks)
+            (push (propertize character-sample 'face (list face :family family :slant 'italic :weight 'bold)) list-of-blocks))
+          (when show-font-sentences-sample
+            (dolist (sentence show-font-sentences-sample)
+              (when (show-font--string-p sentence)
+                (push (propertize sentence 'face (list face :family family)) list-of-sentences)
+                (push (propertize sentence 'face (list face :family family :slant 'italic)) list-of-sentences)
+                (push (propertize sentence 'face (list face :family family :weight 'bold)) list-of-sentences)
+                (push (propertize sentence 'face (list face :family family :slant 'italic :weight 'bold)) list-of-sentences)))))
+        (concat
+         (propertize name 'face (list 'show-font-title :family family))
+         "\n"
+         (make-separator-line)
+         (if (not (equal name family))
+             (concat
+              "\n"
+              (propertize "Rendered with parent family: " 'face (list 'show-font-regular :family family))
+              (propertize family 'face (list 'show-font-regular :family family))
+              "\n"
+              (make-separator-line))
+           "")
+         "\n"
+         (mapconcat #'identity (nreverse list-of-lines) "\n") "\n"
+         (mapconcat #'identity (nreverse list-of-blocks) "\n") "\n" "\n"
+         (mapconcat #'identity (nreverse list-of-sentences) "\n") "\n"))))))
 
 (defun show-font--prepare-text (family)
   "Use appropriate text for preview text of FAMILY.
 If FAMILY is nil, use the one of the current font file."
   (cond
-   ((show-font--displays-latin-p family :lax)
+   ((or (show-font--displays-emoji-p family)
+        (show-font--displays-icon-p family)
+        (show-font--displays-latin-p family :lax))
     (show-font--prepare-text-subr family))
    (t
     (propertize (format "The font family `%s' cannot display characters we know about" family) 'face 'show-font-title))))
@@ -506,19 +561,26 @@ FAMILY is a string that satisfies `show-font-installed-p'."
 Optional REGEXP has the meaning documented in the function
 `show-font-get-installed-font-families'."
   (if-let* ((families (show-font-get-installed-font-families regexp)))
-      ;; FIXME 2025-04-24: How to identify icon fonts?
       (mapcar
        (lambda (family)
-         (let ((latin-p (show-font--displays-latin-p family)))
+         (let ((emoji-p (show-font--displays-emoji-p family))
+               (icon-p (show-font--displays-icon-p family))
+               (latin-p (show-font--displays-latin-p family)))
            (list
             family
             (vector
-             (if latin-p
-                 (propertize family 'face (list 'show-font-title-in-listing :family family))
+             (if (or icon-p emoji-p)
+                 (propertize family 'face (list 'show-font-title-in-listing :family (if latin-p family "Monospace")))
                (propertize family 'face (list :inherit '(error show-font-title-in-listing))))
-             (if latin-p
-                 (propertize (show-font--get-pangram) 'face (list 'show-font-regular :family family))
-               (propertize "No preview" 'face (list :inherit '(error show-font-regular))))))))
+             (cond
+              (emoji-p
+               (propertize show-font-emoji-sample 'face (list 'show-font-regular :family family)))
+              (icon-p
+               (propertize show-font-icon-sample 'face (list 'show-font-regular :family family)))
+              (latin-p
+               (propertize (show-font--get-pangram) 'face (list 'show-font-regular :family family)))
+              (t
+               (propertize "No preview" 'face (list :inherit '(error show-font-regular)))))))))
        families)
     (if regexp
         (error "No font families match regexp `%s'" regexp)
@@ -529,7 +591,7 @@ Optional REGEXP has the meaning documented in the function
 Only `let' bind this while calling `show-font-tabulated-mode'.")
 
 (define-derived-mode show-font-tabulated-mode tabulated-list-mode "Show fonts"
-  "Major mode to display a Modus themes palette."
+  "Major mode to display font previews."
   :interactive nil
   (setq-local tabulated-list-format
               [("Font family" 60 t)

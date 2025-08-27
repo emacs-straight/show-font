@@ -10,11 +10,11 @@ This manual, written by Protesilaos Stavrou, describes the customization
 options for the Emacs package called `show-font' (or `show-font.el'),
 and provides every other piece of information pertinent to it.
 
-The documentation furnished herein corresponds to stable version 0.3.0,
-released on 2025-04-26.  Any reference to a newer feature which does not
+The documentation furnished herein corresponds to stable version 0.4.0,
+released on 2025-08-26.  Any reference to a newer feature which does not
 yet form part of the latest tagged commit, is explicitly marked as such.
 
-Current development target is 0.4.0-dev.
+Current development target is 0.5.0-dev.
 
 ⁃ Package name (GNU ELPA): `show-font'
 ⁃ Official manual: <https://protesilaos.com/emacs/show-font>
@@ -171,6 +171,11 @@ Table of Contents
   words. The default value should cover many such examples. Those are
   displayed in the buffer produced by the command
   `show-font-select-preview'.
+
+  The user options `show-font-emoji-sample' and `show-font-icon-sample'
+  take a string value with characters that can be displayed by an emoji
+  or icon font, respectively. The sample is used in the buffer produced
+  by the commands `show-font-select-preview' and `show-font-tabulated'.
 
   Finally, the following faces control the appearance of various
   elements.
