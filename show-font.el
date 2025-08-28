@@ -5,7 +5,7 @@
 ;; Author: Protesilaos Stavrou <info@protesilaos.com>
 ;; Maintainer: Protesilaos Stavrou <info@protesilaos.com>
 ;; URL: https://github.com/protesilaos/show-font
-;; Version: 0.4.0
+;; Version: 0.4.1
 ;; Package-Requires: ((emacs "29.1"))
 ;; Keywords: convenience, writing, font
 
@@ -393,17 +393,17 @@ FILE must be of type TTF or OTF and must not already be installed (per
   "Prepare pangram text at varying font heights for the current font file.
 With optional FAMILY, prepare a preview for the given font family
 instead of that of the file."
-  (let ((icon-or-emoji-n (lambda (family sample)
-                           (let  ((faces '(show-font-small show-font-regular show-font-medium show-font-large))
-                                  (character-sample nil))
-                             (dolist (face faces)
-                               (push (propertize sample 'face (list face :family family)) character-sample))
-                             (concat
-                              (propertize (or family (show-font--get-attribute-from-file "fullname")) 'face (list 'show-font-title :family "Monospace"))
-                              "\n"
-                              (make-separator-line)
-                              "\n"
-                              (mapconcat #'identity (nreverse character-sample) "\n"))))))
+  (let ((icon-or-emoji-fn (lambda (family sample)
+                            (let  ((faces '(show-font-small show-font-regular show-font-medium show-font-large))
+                                   (character-sample nil))
+                              (dolist (face faces)
+                                (push (propertize sample 'face (list face :family family)) character-sample))
+                              (concat
+                               (propertize (or family (show-font--get-attribute-from-file "fullname")) 'face 'show-font-title)
+                               "\n"
+                               (make-separator-line)
+                               "\n"
+                               (mapconcat #'identity (nreverse character-sample) "\n"))))))
     (cond
      ((not (display-graphic-p))
       (propertize "Fonts cannot be displayed in a terminal or TTY." 'face 'show-font-title))
@@ -411,9 +411,9 @@ instead of that of the file."
            (not (show-font-installed-file-p buffer-file-name)))
       nil)
      ((show-font--displays-emoji-p family)
-      (funcall icon-or-emoji-n family show-font-emoji-sample))
+      (funcall icon-or-emoji-fn family show-font-emoji-sample))
      ((show-font--displays-icon-p family)
-      (funcall icon-or-emoji-n family show-font-icon-sample))
+      (funcall icon-or-emoji-fn family show-font-icon-sample))
      (t
       (let* ((faces '(show-font-small show-font-regular show-font-medium show-font-large))
              (list-of-lines nil)
@@ -569,9 +569,13 @@ Optional REGEXP has the meaning documented in the function
            (list
             family
             (vector
-             (if (or icon-p emoji-p)
-                 (propertize family 'face (list 'show-font-title-in-listing :family (if latin-p family "Monospace")))
-               (propertize family 'face (list :inherit '(error show-font-title-in-listing))))
+             (cond
+              ((or icon-p emoji-p)
+               (propertize family 'face (list 'show-font-title-in-listing)))
+              (latin-p
+               (propertize family 'face (list 'show-font-title-in-listing :family family)))
+              (t
+               (propertize family 'face (list :inherit '(error show-font-title-in-listing)))))
              (cond
               (emoji-p
                (propertize show-font-emoji-sample 'face (list 'show-font-regular :family family)))
@@ -582,9 +586,7 @@ Optional REGEXP has the meaning documented in the function
               (t
                (propertize "No preview" 'face (list :inherit '(error show-font-regular)))))))))
        families)
-    (if regexp
-        (error "No font families match regexp `%s'" regexp)
-      (error "No font families found"))))
+    (error "No font families found")))
 
 (defvar show-font-tabulated-current-regexp nil
   "Regexp for `show-font-get-installed-font-families'.
