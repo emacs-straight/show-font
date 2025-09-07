@@ -1,4 +1,4 @@
-This is docyRn9bR.info, produced by makeinfo version 6.8 from
+This is docsdpie5.info, produced by makeinfo version 6.8 from
 show-font.texi.
 
 Copyright (C) 2024-2025 Free Software Foundation, Inc.
@@ -20,7 +20,7 @@ START-INFO-DIR-ENTRY
 END-INFO-DIR-ENTRY
 
 
-File: docyRn9bR.info,  Node: Top,  Next: Installation,  Up: (dir)
+File: docsdpie5.info,  Node: Top,  Next: Installation,  Up: (dir)
 
 show-font: preview fonts
 ************************
@@ -87,7 +87,7 @@ Indices
 
 
 
-File: docyRn9bR.info,  Node: Installation,  Next: Sample configuration,  Prev: Top,  Up: Top
+File: docsdpie5.info,  Node: Installation,  Next: Sample configuration,  Prev: Top,  Up: Top
 
 1 Installation
 **************
@@ -98,7 +98,7 @@ File: docyRn9bR.info,  Node: Installation,  Next: Sample configuration,  Prev: T
 * Manual installation::
 
 
-File: docyRn9bR.info,  Node: GNU ELPA package,  Next: Manual installation,  Up: Installation
+File: docsdpie5.info,  Node: GNU ELPA package,  Next: Manual installation,  Up: Installation
 
 1.1 GNU ELPA package
 ====================
@@ -117,7 +117,7 @@ archive.  Read:
 <https://protesilaos.com/codelog/2022-05-13-emacs-elpa-devel/>.
 
 
-File: docyRn9bR.info,  Node: Manual installation,  Prev: GNU ELPA package,  Up: Installation
+File: docsdpie5.info,  Node: Manual installation,  Prev: GNU ELPA package,  Up: Installation
 
 1.2 Manual installation
 =======================
@@ -144,7 +144,7 @@ following commands in a shell prompt:
    Everything is in place to set up the package.
 
 
-File: docyRn9bR.info,  Node: Sample configuration,  Next: Overview,  Prev: Installation,  Up: Top
+File: docsdpie5.info,  Node: Sample configuration,  Next: Overview,  Prev: Installation,  Up: Top
 
 2 Sample configuration
 **********************
@@ -163,7 +163,7 @@ File: docyRn9bR.info,  Node: Sample configuration,  Next: Overview,  Prev: Insta
         ("C-c s t" . show-font-tabulated)))
 
 
-File: docyRn9bR.info,  Node: Overview,  Next: Acknowledgements,  Prev: Sample configuration,  Up: Top
+File: docsdpie5.info,  Node: Overview,  Next: Acknowledgements,  Prev: Sample configuration,  Up: Top
 
 3 Overview
 **********
@@ -178,10 +178,14 @@ Emacs.  This can be done in the following ways:
    • The command ‘show-font-tabulated’ (alias ‘show-font-list’) produces
      a list with all the fonts available on the system.  Each font on
      display is styled with its given character set.  With an optional
-     prefix argument (‘C-u’ by default), it prompt for a string or
+     prefix argument (‘C-u’ by default), it prompts for a string or
      regular expression to limit the list of fonts to only the matching
      ones.  In this tabulated interface, users can sort by column and
-     may prefer the slightly more compact listing.
+     may prefer the slightly more compact listing.  In this tabulated
+     view, the ‘RET’ key calls the command
+     ‘show-font-tabulated-select-preview’, which is the same as running
+     the aforementioned ‘show-font-select-preview’ with the font family
+     referenced on the current line.
 
    • The ‘show-font-mode’ is a major mode that gets activated when the
      user visits a ‘.ttf’ or ‘.otf’ file.  It will preview with the
@@ -241,7 +245,7 @@ elements.
    • ‘show-font-button’
 
 
-File: docyRn9bR.info,  Node: Acknowledgements,  Next: GNU Free Documentation License,  Prev: Overview,  Up: Top
+File: docsdpie5.info,  Node: Acknowledgements,  Next: GNU Free Documentation License,  Prev: Overview,  Up: Top
 
 4 Acknowledgements
 ******************
@@ -259,7 +263,7 @@ Ideas and/or user feedback
      Darryl Hebbes, Perry Metzger, Zhengyi Fu.
 
 
-File: docyRn9bR.info,  Node: GNU Free Documentation License,  Next: Indices,  Prev: Acknowledgements,  Up: Top
+File: docsdpie5.info,  Node: GNU Free Documentation License,  Next: Indices,  Prev: Acknowledgements,  Up: Top
 
 5 GNU Free Documentation License
 ********************************
@@ -741,7 +745,7 @@ software license, such as the GNU General Public License, to permit
 their use in free software.
 
 
-File: docyRn9bR.info,  Node: Indices,  Prev: GNU Free Documentation License,  Up: Top
+File: docsdpie5.info,  Node: Indices,  Prev: GNU Free Documentation License,  Up: Top
 
 6 Indices
 *********
@@ -753,7 +757,7 @@ File: docyRn9bR.info,  Node: Indices,  Prev: GNU Free Documentation License,  Up
 * Concept index::
 
 
-File: docyRn9bR.info,  Node: Function index,  Next: Variable index,  Up: Indices
+File: docsdpie5.info,  Node: Function index,  Next: Variable index,  Up: Indices
 
 6.1 Function index
 ==================
@@ -762,13 +766,14 @@ File: docyRn9bR.info,  Node: Function index,  Next: Variable index,  Up: Indices
 * Menu:
 
 * show-font-list:                        Overview.             (line 13)
-* show-font-mode:                        Overview.             (line 21)
-* show-font-pangram-p:                   Overview.             (line 36)
+* show-font-mode:                        Overview.             (line 25)
+* show-font-pangram-p:                   Overview.             (line 40)
 * show-font-select-preview:              Overview.             (line  9)
 * show-font-tabulated:                   Overview.             (line 13)
+* show-font-tabulated-select-preview:    Overview.             (line 13)
 
 
-File: docyRn9bR.info,  Node: Variable index,  Next: Concept index,  Prev: Function index,  Up: Indices
+File: docsdpie5.info,  Node: Variable index,  Next: Concept index,  Prev: Function index,  Up: Indices
 
 6.2 Variable index
 ==================
@@ -776,23 +781,23 @@ File: docyRn9bR.info,  Node: Variable index,  Next: Concept index,  Prev: Functi
  [index ]
 * Menu:
 
-* show-font-button:                      Overview.             (line 76)
-* show-font-character-sample:            Overview.             (line 40)
-* show-font-display-buffer-action-alist: Overview.             (line 27)
-* show-font-emoji-sample:                Overview.             (line 54)
-* show-font-icon-sample:                 Overview.             (line 54)
-* show-font-large:                       Overview.             (line 68)
-* show-font-medium:                      Overview.             (line 66)
-* show-font-misc:                        Overview.             (line 74)
-* show-font-pangram:                     Overview.             (line 31)
-* show-font-regular:                     Overview.             (line 64)
-* show-font-sentences-sample:            Overview.             (line 48)
-* show-font-small:                       Overview.             (line 62)
-* show-font-title:                       Overview.             (line 70)
-* show-font-title-in-listing:            Overview.             (line 72)
+* show-font-button:                      Overview.             (line 80)
+* show-font-character-sample:            Overview.             (line 44)
+* show-font-display-buffer-action-alist: Overview.             (line 31)
+* show-font-emoji-sample:                Overview.             (line 58)
+* show-font-icon-sample:                 Overview.             (line 58)
+* show-font-large:                       Overview.             (line 72)
+* show-font-medium:                      Overview.             (line 70)
+* show-font-misc:                        Overview.             (line 78)
+* show-font-pangram:                     Overview.             (line 35)
+* show-font-regular:                     Overview.             (line 68)
+* show-font-sentences-sample:            Overview.             (line 52)
+* show-font-small:                       Overview.             (line 66)
+* show-font-title:                       Overview.             (line 74)
+* show-font-title-in-listing:            Overview.             (line 76)
 
 
-File: docyRn9bR.info,  Node: Concept index,  Prev: Variable index,  Up: Indices
+File: docsdpie5.info,  Node: Concept index,  Prev: Variable index,  Up: Indices
 
 6.3 Concept index
 =================
@@ -812,12 +817,12 @@ Node: GNU ELPA package3119
 Node: Manual installation3683
 Node: Sample configuration4464
 Node: Overview4960
-Node: Acknowledgements8253
-Node: GNU Free Documentation License8701
-Node: Indices34044
-Node: Function index34220
-Node: Variable index34730
-Node: Concept index35919
+Node: Acknowledgements8509
+Node: GNU Free Documentation License8957
+Node: Indices34300
+Node: Function index34476
+Node: Variable index35059
+Node: Concept index36248
 
 End Tag Table
 
