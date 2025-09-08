@@ -4,9 +4,9 @@
 #+language: en
 #+options: ':t toc:nil author:t email:t num:t
 #+startup: content
-#+macro: stable-version 0.4.0
-#+macro: release-date 2025-08-26
-#+macro: development-version 0.5.0-dev
+#+macro: stable-version 1.0.0
+#+macro: release-date 2025-09-07
+#+macro: development-version 1.1.0-dev
 #+export_file_name: show-font.texi
 #+texinfo_filename: show-font.info
 #+texinfo_dir_category: Emacs misc features
@@ -143,7 +143,9 @@ Emacs. This can be done in the following ways:
   prefer the slightly more compact listing. In this tabulated view,
   the =RET= key calls the command ~show-font-tabulated-select-preview~,
   which is the same as running the aforementioned ~show-font-select-preview~
-  with the font family referenced on the current line.
+  with the font family referenced on the current line. In this same
+  view, the =w= key calls the command ~show-font-tabulated-copy-name~,
+  which copies into the ~kill-ring~ the name of the font family on the current line.
 
 #+findex: show-font-mode
 - The ~show-font-mode~ is a major mode that gets activated when the
@@ -185,10 +187,29 @@ displayed in the buffer produced by the command ~show-font-select-preview~.
 
 #+vindex: show-font-emoji-sample
 #+vindex: show-font-icon-sample
+#+vindex: show-font-mathematics-sample
+#+vindex: show-font-symbols-sample
+#+vindex: show-font-music-sample
 The user options ~show-font-emoji-sample~ and ~show-font-icon-sample~
 take a string value with characters that can be displayed by an emoji
 or icon font, respectively. The sample is used in the buffer produced
 by the commands ~show-font-select-preview~ and ~show-font-tabulated~.
+A ~show-font-mathematics-sample~ is also available for font that
+specialise in mathematics, while ~show-font-symbols-sample~ is for
+other symbols and ~show-font-music-sample~ is for music notation.
+
+#+vindex: show-font-arabic-sample
+#+vindex: show-font-chinese-sample
+#+vindex: show-font-greek-sample
+#+vindex: show-font-japanese-sample
+#+vindex: show-font-korean-sample
+#+vindex: show-font-russian-sample
+The package also supports Arabic, Chinese, Greek, Japanese, Korean,
+and Russian (and the plan is to extend it further). Relevant user
+options for the character sample of the respective languages are:
+~show-font-arabic-sample~, ~show-font-chinese-sample~,
+~show-font-greek-sample~, ~show-font-japanese-sample~,
+~show-font-korean-sample~, ~show-font-russian-sample~.
 
 Finally, the following faces control the appearance of various
 elements.

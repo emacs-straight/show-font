@@ -5,7 +5,7 @@
 ;; Author: Protesilaos Stavrou <info@protesilaos.com>
 ;; Maintainer: Protesilaos Stavrou <info@protesilaos.com>
 ;; URL: https://github.com/protesilaos/show-font
-;; Version: 0.4.1
+;; Version: 1.0.0
 ;; Package-Requires: ((emacs "29.1"))
 ;; Keywords: convenience, writing, font
 
@@ -59,15 +59,35 @@ The PUA is typically used by icon fonts.")
   '(#x1F600 #x1F601 #x1F602 #x1F349)
   "A sequence of characters in the emoji range.")
 
-;; TODO 2024-09-06: How best to handle multiple languages?  Say there
-;; is a font that only works with Greek characters.  We need to know
-;; what characters the font supports.  Then we return the relevant
-;; pangram and sample text.
+(defconst show-font-arabic-characters
+  (number-sequence #x0627 #x064A)
+  "The Arabic characters from alif to yeh.")
+
+(defconst show-font-greek-characters
+  (number-sequence ?α ?ω)
+  "The Greek lower-case characters.")
+
+(defconst show-font-chinese-characters
+  '(#x4E00 #x4EBA #x5927 #x5B66)
+  "A sequence of common Chinese characters.")
+
+(defconst show-font-japanese-characters
+  '(#x3042 #x3044 #x3046 #x30A2 #x30A4 #x30A6)
+  "A sequence of common Japanese characters.")
+
+(defconst show-font-korean-characters
+  '(#xAC00 #xAC01 #xAC02 #xD55C #xAE00)
+  "A sequence of common Korean characters.")
+
+(defconst show-font-russian-characters
+  (number-sequence ?а ?я)
+  "The Russian lower-case characters.")
+
 (defconst show-font-pangrams
   '((fox . "The quick brown fox jumps over the lazy dog")
     (wizards . "Grumpy wizards make toxic brew for the evil queen and jack")
     (gunboats . "A quick movement of the enemy will jeopardize six gunboats")
-    (prot . "Prot may find zesty owls and quiet jays vexing the black cat"))
+    (prot . "Protesilaos may find zesty owls and quiet jays vexing the black cat"))
   "Default list of pangrams.")
 
 (defcustom show-font-pangram 'prot
@@ -85,7 +105,23 @@ experimenting with `show-font-pangram-p'."
           (string :tag "A custom pangram"))
   :group 'show-font)
 
-;; See TODO above about multiple languages.
+(defcustom show-font-arabic-sample
+  "بروتيسيلاوس لا يستطيع قراءة اللغة العربية" ; Protesilaos cannot read Arabic
+  "Character sample to showcase Arabic fonts.
+This is displayed in the buffer produced by the command
+`show-font-select-preview' and `show-font-tabulated'."
+  :package-version '(show-font . "1.0.0")
+  :type 'string
+  :group 'show-font)
+
+(defcustom show-font-chinese-sample
+  "普罗泰西劳斯无法阅读中文" ; Protesilaos cannot read Chinese
+  "Character sample to showcase Chinese fonts.
+This is displayed in the buffer produced by the command
+`show-font-select-preview' and `show-font-tabulated'."
+  :package-version '(show-font . "1.0.0")
+  :type 'string
+  :group 'show-font)
 
 (defcustom show-font-emoji-sample
   "😀😁😂🤣😃😄😅😆😉😊😋😎😍😘🥰"
@@ -96,12 +132,75 @@ This is displayed in the buffer produced by the command
   :type 'string
   :group 'show-font)
 
+(defcustom show-font-greek-sample
+  "Πρωτεσίλαος ο φιλόσοφος του οποίου τα έργα βρίθουν αστειισμών"
+  "Character sample to showcase Greek fonts.
+This is displayed in the buffer produced by the command
+`show-font-select-preview' and `show-font-tabulated'."
+  :package-version '(show-font . "1.0.0")
+  :type 'string
+  :group 'show-font)
+
+(defcustom show-font-japanese-sample
+  "プロテシラオスは日本語を読むことができません" ; Protesilaos cannot read Japanese
+  "Character sample to showcase Japanese fonts.
+This is displayed in the buffer produced by the command
+`show-font-select-preview' and `show-font-tabulated'."
+  :package-version '(show-font . "1.0.0")
+  :type 'string
+  :group 'show-font)
+
+(defcustom show-font-korean-sample
+  "프로테실라오스는 한국어를 읽을 수 없습니다" ; Protesilaos cannot read Korean
+  "Character sample to showcase Korean fonts.
+This is displayed in the buffer produced by the command
+`show-font-select-preview' and `show-font-tabulated'."
+  :package-version '(show-font . "1.0.0")
+  :type 'string
+  :group 'show-font)
+
+(defcustom show-font-mathematics-sample
+  "x = (-b ± √(b² - 4ac)) / 2a"
+  "Character sample to showcase mathematical fonts.
+This is displayed in the buffer produced by the command
+`show-font-select-preview' and `show-font-tabulated'."
+  :package-version '(show-font . "1.0.0")
+  :type 'string
+  :group 'show-font)
+
+(defcustom show-font-music-sample
+  "♩♪♫♬"
+  "Character sample to showcase music fonts.
+This is displayed in the buffer produced by the command
+`show-font-select-preview' and `show-font-tabulated'."
+  :package-version '(show-font . "1.0.0")
+  :type 'string
+  :group 'show-font)
+
+(defcustom show-font-russian-sample
+  "Протесилаос не умеет читать по-русски" ; Protesilaos cannot read Russian
+  "Character sample to showcase Russian fonts.
+This is displayed in the buffer produced by the command
+`show-font-select-preview' and `show-font-tabulated'."
+  :package-version '(show-font . "1.0.0")
+  :type 'string
+  :group 'show-font)
+
 (defcustom show-font-icon-sample
   (mapconcat #'char-to-string (seq-take show-font-icon-characters 10))
   "Character sample to showcase icon fonts.
 This is displayed in the buffer produced by the command
 `show-font-select-preview' and `show-font-tabulated'."
   :package-version '(show-font . "0.4.0")
+  :type 'string
+  :group 'show-font)
+
+(defcustom show-font-symbols-sample
+  "←→↑↓ ─│┌┐└┘ €¥£₩ ■□▲▶▼◀◆ ● ±×÷≠≤≥∞ ♩♪♫♬"
+  "Character sample to showcase Symbols.
+This is displayed in the buffer produced by the command
+`show-font-select-preview' and `show-font-tabulated'."
+  :package-version '(show-font . "1.0.0")
   :type 'string
   :group 'show-font)
 
@@ -167,6 +266,81 @@ action alist."
                  :value-type ,display-buffer--action-custom-type)
           (function :tag "Custom function to return an action alist"))
   :risky t)
+
+(defconst show-font-greek-families
+  '("Gentium" "Gentium Book Plus" "Gentium Plus" "GentiumAlt"
+    "GFS Artemisia" "GFS Baskerville" "GFS BodoniClassic" "GFS Complutum"
+    "GFS Didot" "GFS Didot Classic" "GFS Gazis" "GFS Neohellenic" "GFS Olga"
+    "GFS Porson" "GFS Solomos" "GFS Theokritos" )
+  "List of families that specialise in the Greek language.
+Such fonts typically also support Latin, but we want to highlight the
+fact that they are well suited for Greek.")
+
+(defconst show-font-arabic-families
+  '("AlArabiya" "AlBattar" "AlHor" "AlManzomah" "AlYarmook"
+    "Dimnah" "Hani" "Haramain" "Hor" "Kayrawan" "Khalid" "Mashq"
+    "Nagham" "Noto Kufi Arabic" "Noto Naskh Arabic" "Noto Sans Arabic"
+    "Rehan" "Sharjah" "Sindbad")
+  "List of families that specialise in Arabic.
+Also see `show-font-greek-families' for the rationale of grouping font
+families in distinct variables.")
+
+(defconst show-font-chinese-families
+  '("Noto Sans CJK HK" "Noto Sans Mono CJK HK"
+    "Noto Sans CJK SC" "Noto Sans CJK TC"
+    "Noto Sans Mono CJK SC" "Noto Sans Mono CJK TC"
+    "Noto Serif CJK HK" "Noto Serif Mono CJK HK"
+    "Noto Serif CJK SC" "Noto Serif CJK TC"
+    "Noto Serif Mono CJK SC" "Noto Serif Mono CJK TC")
+  "List of families that specialise in Chinese.
+Also see `show-font-greek-families' for the rationale of grouping font
+families in distinct variables.")
+
+(defconst show-font-japanese-families
+  '("Japan" "Noto Sans CJK JP" "Noto Sans Mono CJK JP"
+    "Noto Serif CJK JP" "Noto Serif Mono CJK JP")
+  "List of families that specialise in Japanese.
+Also see `show-font-greek-families' for the rationale of grouping font
+families in distinct variables.")
+
+(defconst show-font-korean-families
+  '("Noto Sans CJK KR" "Noto Sans Mono CJK KR"
+    "Noto Serif CJK KR" "Noto Serif Mono CJK KR")
+  "List of families that specialise in Korean.
+Also see `show-font-greek-families' for the rationale of grouping font
+families in distinct variables.")
+
+(defconst show-font-russian-families
+  '("PT Mono" "PT Sans" "PT Sans Caption" "PT Sans Narrow" "PT Serif" "PT Serif Caption")
+  "List of families that specialise in Russian.
+Also see `show-font-greek-families' for the rationale of grouping font
+families in distinct variables.")
+
+(defconst show-font-mathematics-families
+  '("MathJax_Fraktur" "MathJax_Main" "MathJax_SansSerif")
+  "List of families that specialise in rendering Mathematical formulas.
+Also see `show-font-greek-families' for the rationale of grouping font
+families in distinct variables.")
+
+(defconst show-font-music-families
+  '("Denemo" "Emmentaler" "Musica" "Nada")
+  "List of families that specialise in rendering music notation.
+Also see `show-font-greek-families' for the rationale of grouping font
+families in distinct variables.")
+
+(defconst show-font-symbols-families
+  '("Noto Sans Symbols" "Symbola")
+  "List of families that specialise in rendering symbols.
+Also see `show-font-greek-families' for the rationale of grouping font
+families in distinct variables.")
+
+(defconst show-font-hidden-families
+  '("D050000L" "Droid Sans Fallback" "MathJax_AMS" "MathJax_Caligraphic" "MathJax_Math"
+    "MathJax_Size1" "MathJax_Size2" "MathJax_Size3" "MathJax_Size4" "MathJax_Script"
+    "MathJax_Typewriter" "MathJax_Vector" "MathJax_Vector-Bold" "MathJax_WinChrome"
+    "MathJax_WinIE6" "Standard Symbols PS" "Symbols Nerd Font Mono" "Unifont CSUR"
+    "Unifont Sample" "Unifont Upper" "Unifont-JP" "feta26")
+  "List of families to omit from the `show-font-tabulated'.")
 
 ;;;; Faces
 
@@ -242,6 +416,23 @@ return nil."
       (message "Still missing: %s" (mapconcat #'identity missing-characters ", "))
       nil)))
 
+(defmacro show-font--define-prefer-check (language)
+  "Define a function to check if LANGUAGE has preferred fonts."
+  (let ((families (intern (format "show-font-%s-families" language))))
+    `(defun ,(intern (format "show-font--prefers-%s-p" language)) (family)
+       ,(format "Return non-nil if FAMILY is among %s." families)
+       (member family ,families))))
+
+(show-font--define-prefer-check arabic)
+(show-font--define-prefer-check chinese)
+(show-font--define-prefer-check greek)
+(show-font--define-prefer-check japanese)
+(show-font--define-prefer-check korean)
+(show-font--define-prefer-check mathematics)
+(show-font--define-prefer-check music)
+(show-font--define-prefer-check russian)
+(show-font--define-prefer-check symbols)
+
 ;;;###autoload
 (defun show-font-handler (operation &rest args)
   "Handle the given I/O `file-name-handler-alist' OPERATION with ARGS.
@@ -265,7 +456,7 @@ Determine how to render the font file contents in a buffer."
   "Get font family ATTRIBUTE from the current file or given FILE.
 ATTRIBUTE is a string, such as \"family\" or \"fullname\", which is
 matched against the output of the `fc-scan' executable."
-  ;; TODO 2024-09-06: Make this work with other font backends.
+  ;; FIXME 2024-09-06: Make this work with other font backends.
   (unless (executable-find "fc-scan")
     (error "Cannot find `fc-scan' executable; will not render font"))
   (when-let* ((f (or file buffer-file-name))
@@ -277,10 +468,12 @@ matched against the output of the `fc-scan' executable."
         (car (split-string output ","))
       output)))
 
-(defun show-font-get-installed-font-families (&optional regexp)
+(defun show-font-get-installed-font-families (&optional regexp show-hidden)
   "Return list of installed font families names.
 With optional REGEXP filter the list to only include fonts whose name
-matches the given regular expression."
+matches the given regular expression.
+
+With optional SHOW-HIDDEN, include the `show-font-hidden-families'."
   (let ((fonts (thread-last (x-family-fonts)
                             (mapcar
                              (lambda (font)
@@ -290,38 +483,38 @@ matches the given regular expression."
                             (delete-dups))))
     (when regexp
       (setq fonts (seq-filter (lambda (family) (string-match-p regexp family)) fonts)))
+    (unless show-hidden
+      (setq fonts (seq-remove (lambda (family) (member family show-font-hidden-families)) fonts)))
     (sort fonts #'string-lessp)))
 
-(defun show-font--displays-characters-p (family characters &optional lax)
+(defun show-font--displays-characters-p (family characters)
   "Return non-nil if the font FAMILY can display CHARACTERS.
-CHARACTERS is a sequence of numbers, corresponding to characters.
-
-With optional LAX if FAMILY can display at least one among the
-CHARACTERS."
+CHARACTERS is a sequence of numbers, corresponding to characters."
   (if-let* ((font-object (find-font (font-spec :family family))))
       (catch 'exit
         (dolist (character characters)
-          (or (and lax (font-has-char-p font-object character) (throw 'exit t))
-              (font-has-char-p font-object character)
+          (or (font-has-char-p font-object character)
               (throw 'exit nil)))
         t)
     (error "No font object for family `%s'" family)))
 
-(defun show-font--displays-latin-p (family &optional lax)
-  "Return non-nil if the font FAMILY can display Latin.
-With optional LAX if FAMILY can display at least one among the
-CHARACTERS."
-  (show-font--displays-characters-p family show-font-latin-characters lax))
+(defmacro show-font--define-display-check (language)
+  "Define a `show-font--displays-characters-p' function for LANGUAGE."
+  `(defun ,(intern (format "show-font--displays-%s-p" language)) (family)
+     ,(format
+       "Return non-nil if the font FAMILY can display %s."
+       language)
+     (show-font--displays-characters-p family ,(intern (format "show-font-%s-characters" language)))))
 
-(defun show-font--displays-emoji-p (family)
-  "Return non-nil if FAMILY is likely an emoji font."
-  (and (not (show-font--displays-latin-p family))
-       (show-font--displays-characters-p family show-font-emoji-characters :lax)))
-
-(defun show-font--displays-icon-p (family)
-  "Return non-nil if FAMILY is likely an icon font."
-  (and (not (show-font--displays-latin-p family))
-       (show-font--displays-characters-p family show-font-icon-characters :lax)))
+(show-font--define-display-check arabic)
+(show-font--define-display-check chinese)
+(show-font--define-display-check emoji)
+(show-font--define-display-check greek)
+(show-font--define-display-check icon)
+(show-font--define-display-check japanese)
+(show-font--define-display-check korean)
+(show-font--define-display-check latin)
+(show-font--define-display-check russian)
 
 (defun show-font-installed-p (family &optional regexp)
   "Return non-nil if font family FAMILY is installed on the system.
@@ -334,7 +527,7 @@ matches the given regular expression."
   "Get list of font files available on the system."
   (unless (executable-find "fc-list")
     (error "Cannot find `fc-list' executable; will not find installed fonts"))
-  ;; TODO 2024-09-06: Make this work with other font backends.
+  ;; FIXME 2024-09-06: Make this work with other font backends.
   (process-lines "fc-list" "-f" (format "%%{%s}\n" "file")))
 
 (defun show-font-installed-file-p (file)
@@ -368,7 +561,7 @@ matches the given regular expression."
               (_ (show-font--install-confirmation destination)))
     (copy-file file destination 1) ; ask for confirmation to overwrite
     (message "Copied `%s' to `%s'; now updating the font cache" file destination)
-    ;; TODO 2024-09-06: How to do the same on all operating systems?
+    ;; FIXME 2024-09-06: How to do the same on all operating systems?
     (shell-command-to-string (format "fc-cache -f -v"))
     (message "Font installed; restart Emacs to notice the effect")))
 
@@ -389,85 +582,113 @@ FILE must be of type TTF or OTF and must not already be installed (per
   "Return non-nil if STRING is a string that is not empty."
   (and (stringp string) (not (string-blank-p string))))
 
+(defun show-font--prepare-text-generic-sample (check-type family language generic-title-font)
+  "Return generic `show-font--prepare-text-subr' sample of FAMILY for LANGUAGE.
+Use CHECK-TYPE as a symbol of `displays' or `prefers' to run the
+corresponding checker function, like `show-font--displays-greek-p'
+instead of `show-font--prefers-greek-p'.
+
+If GENERIC-TITLE-FONT is non-nil, do not try to render the title in
+FAMILY but use whatever the `default' face is."
+  (unless (memq check-type '(prefers displays))
+    (error "The CHECK-TYPE must be the symbol `prefers' or `displays'"))
+  (let* ((check-fn (intern-soft (format "show-font--%s-%s-p" check-type language)))
+         (language-sample (or (intern-soft (format "show-font-%s-sample" language))
+                              (error "There is no known sample for `%s'" language)))
+         (sample (symbol-value language-sample)))
+    (when (funcall check-fn family)
+      (let ((output-sample nil))
+        (dolist (face '(show-font-small show-font-regular show-font-medium show-font-large))
+          (push (propertize sample 'face (list face :family family)) output-sample))
+        (concat
+         (propertize (or family (show-font--get-attribute-from-file "fullname"))
+                     'face (cond
+                            (generic-title-font
+                             'show-font-title-in-listing)
+                            ((show-font--displays-latin-p family)
+                             (list 'show-font-title-in-listing :family family))
+                            (t
+                             'show-font-title-in-listing)))
+         "\n"
+         (make-separator-line)
+         "\n"
+         (mapconcat #'identity (nreverse output-sample) "\n"))))))
+
 (defun show-font--prepare-text-subr (&optional family)
   "Prepare pangram text at varying font heights for the current font file.
 With optional FAMILY, prepare a preview for the given font family
 instead of that of the file."
-  (let ((icon-or-emoji-fn (lambda (family sample)
-                            (let  ((faces '(show-font-small show-font-regular show-font-medium show-font-large))
-                                   (character-sample nil))
-                              (dolist (face faces)
-                                (push (propertize sample 'face (list face :family family)) character-sample))
-                              (concat
-                               (propertize (or family (show-font--get-attribute-from-file "fullname")) 'face 'show-font-title)
-                               "\n"
-                               (make-separator-line)
-                               "\n"
-                               (mapconcat #'identity (nreverse character-sample) "\n"))))))
-    (cond
-     ((not (display-graphic-p))
-      (propertize "Fonts cannot be displayed in a terminal or TTY." 'face 'show-font-title))
-     ((and (not family)
-           (not (show-font-installed-file-p buffer-file-name)))
-      nil)
-     ((show-font--displays-emoji-p family)
-      (funcall icon-or-emoji-fn family show-font-emoji-sample))
-     ((show-font--displays-icon-p family)
-      (funcall icon-or-emoji-fn family show-font-icon-sample))
-     (t
-      (let* ((faces '(show-font-small show-font-regular show-font-medium show-font-large))
-             (list-of-lines nil)
-             (list-of-blocks nil)
-             (list-of-sentences nil)
-             (pangram (show-font--get-pangram))
-             (name (or family (show-font--get-attribute-from-file "fullname")))
-             (family (or family (show-font--get-attribute-from-file "family")))
-             (character-sample show-font-character-sample)
-             (propertize-sample-p (show-font--string-p character-sample)))
-        (dolist (face faces)
-          (push (propertize pangram 'face (list face :family family)) list-of-lines)
-          (push (propertize pangram 'face (list face :family family :slant 'italic)) list-of-lines)
-          (push (propertize pangram 'face (list face :family family :weight 'bold)) list-of-lines)
-          (push (propertize pangram 'face (list face :family family :slant 'italic :weight 'bold)) list-of-lines)
-          (when propertize-sample-p
-            (push (propertize character-sample 'face (list face :family family)) list-of-blocks)
-            (push (propertize character-sample 'face (list face :family family :slant 'italic)) list-of-blocks)
-            (push (propertize character-sample 'face (list face :family family :weight 'bold)) list-of-blocks)
-            (push (propertize character-sample 'face (list face :family family :slant 'italic :weight 'bold)) list-of-blocks))
-          (when show-font-sentences-sample
-            (dolist (sentence show-font-sentences-sample)
-              (when (show-font--string-p sentence)
-                (push (propertize sentence 'face (list face :family family)) list-of-sentences)
-                (push (propertize sentence 'face (list face :family family :slant 'italic)) list-of-sentences)
-                (push (propertize sentence 'face (list face :family family :weight 'bold)) list-of-sentences)
-                (push (propertize sentence 'face (list face :family family :slant 'italic :weight 'bold)) list-of-sentences)))))
-        (concat
-         (propertize name 'face (list 'show-font-title :family family))
-         "\n"
-         (make-separator-line)
-         (if (not (equal name family))
-             (concat
-              "\n"
-              (propertize "Rendered with parent family: " 'face (list 'show-font-regular :family family))
-              (propertize family 'face (list 'show-font-regular :family family))
-              "\n"
-              (make-separator-line))
-           "")
-         "\n"
-         (mapconcat #'identity (nreverse list-of-lines) "\n") "\n"
-         (mapconcat #'identity (nreverse list-of-blocks) "\n") "\n" "\n"
-         (mapconcat #'identity (nreverse list-of-sentences) "\n") "\n"))))))
-
-(defun show-font--prepare-text (family)
-  "Use appropriate text for preview text of FAMILY.
-If FAMILY is nil, use the one of the current font file."
   (cond
-   ((or (show-font--displays-emoji-p family)
-        (show-font--displays-icon-p family)
-        (show-font--displays-latin-p family :lax))
-    (show-font--prepare-text-subr family))
+   ((not (display-graphic-p))
+    (propertize "Fonts cannot be displayed in a terminal or TTY." 'face 'show-font-title))
+   ((and (not family)
+         (not (show-font-installed-file-p buffer-file-name)))
+    nil)
+   ((show-font--prepare-text-generic-sample 'prefers family 'mathematics :generic-title-family))
+   ((show-font--prepare-text-generic-sample 'prefers family 'music :generic-title-family))
+   ((show-font--prepare-text-generic-sample 'prefers family 'symbols :generic-title-family))
+   ((show-font--prepare-text-generic-sample 'displays family 'emoji :generic-title-family))
+   ((show-font--prepare-text-generic-sample 'displays family 'icon :generic-title-family))
+   ((show-font--prepare-text-generic-sample 'prefers family 'arabic nil))
+   ((show-font--prepare-text-generic-sample 'prefers family 'chinese nil))
+   ;; NOTE 2025-09-06: Many Latin fonts support Greek characters.
+   ;; If we check for `show-font--displays-greek-p' here we will end
+   ;; up with very few Latin fonts, which does not look right.
+   ((show-font--prepare-text-generic-sample 'prefers family 'greek nil))
+   ((show-font--prepare-text-generic-sample 'prefers family 'japanese nil))
+   ((show-font--prepare-text-generic-sample 'prefers family 'korean nil))
+   ((show-font--prepare-text-generic-sample 'prefers family 'russian nil))
+   ((show-font--displays-latin-p family)
+    (let* ((faces '(show-font-small show-font-regular show-font-medium show-font-large))
+           (list-of-lines nil)
+           (list-of-blocks nil)
+           (list-of-sentences nil)
+           (pangram (show-font--get-pangram))
+           (name (or family (show-font--get-attribute-from-file "fullname")))
+           (family (or family (show-font--get-attribute-from-file "family")))
+           (character-sample show-font-character-sample)
+           (propertize-sample-p (show-font--string-p character-sample)))
+      (dolist (face faces)
+        (push (propertize pangram 'face (list face :family family)) list-of-lines)
+        (push (propertize pangram 'face (list face :family family :slant 'italic)) list-of-lines)
+        (push (propertize pangram 'face (list face :family family :weight 'bold)) list-of-lines)
+        (push (propertize pangram 'face (list face :family family :slant 'italic :weight 'bold)) list-of-lines)
+        (when propertize-sample-p
+          (push (propertize character-sample 'face (list face :family family)) list-of-blocks)
+          (push (propertize character-sample 'face (list face :family family :slant 'italic)) list-of-blocks)
+          (push (propertize character-sample 'face (list face :family family :weight 'bold)) list-of-blocks)
+          (push (propertize character-sample 'face (list face :family family :slant 'italic :weight 'bold)) list-of-blocks))
+        (when show-font-sentences-sample
+          (dolist (sentence show-font-sentences-sample)
+            (when (show-font--string-p sentence)
+              (push (propertize sentence 'face (list face :family family)) list-of-sentences)
+              (push (propertize sentence 'face (list face :family family :slant 'italic)) list-of-sentences)
+              (push (propertize sentence 'face (list face :family family :weight 'bold)) list-of-sentences)
+              (push (propertize sentence 'face (list face :family family :slant 'italic :weight 'bold)) list-of-sentences)))))
+      (concat
+       (propertize name 'face (list 'show-font-title :family family))
+       "\n"
+       (make-separator-line)
+       (if (not (equal name family))
+           (concat
+            "\n"
+            (propertize "Rendered with parent family: " 'face (list 'show-font-regular :family family))
+            (propertize family 'face (list 'show-font-regular :family family))
+            "\n"
+            (make-separator-line))
+         "")
+       "\n"
+       (mapconcat #'identity (nreverse list-of-lines) "\n") "\n"
+       (mapconcat #'identity (nreverse list-of-blocks) "\n") "\n" "\n"
+       (mapconcat #'identity (nreverse list-of-sentences) "\n") "\n")))
    (t
-    (propertize (format "The font family `%s' cannot display characters we know about" family) 'face 'show-font-title))))
+    (concat
+     (propertize (or family (show-font--get-attribute-from-file "fullname"))
+                 'face 'show-font-title-in-listing)
+     "\n"
+     (make-separator-line)
+     "\n"
+     (propertize "No known preview for this font family" 'face 'error)))))
 
 (defun show-font--install-file-button (_button)
   "Wrapper for `show-font-install' to work as a button."
@@ -500,7 +721,7 @@ buffer."
     (with-current-buffer (or buffer (current-buffer))
       (let ((inhibit-read-only t))
         (save-excursion
-          (if-let* ((text (show-font--prepare-text nil)))
+          (if-let* ((text (show-font--prepare-text-subr nil)))
               (insert text)
             (show-font--insert-button)))))))
 
@@ -535,10 +756,12 @@ Optional REGEXP has the same meaning as in the aforementioned function."
 When called interactively, prompt for FAMILY.  When called from Lisp,
 FAMILY is a string that satisfies `show-font-installed-p'."
   (interactive (list (show-font--select-preview-prompt)))
+  (unless (display-graphic-p)
+    (user-error "Can only preview fonts in graphical Emacs"))
   (if (show-font-installed-p family)
       (show-font-with-preview-buffer (format "*show-font preview of `%s'*" family)
         (save-excursion
-          (insert (show-font--prepare-text family)))
+          (insert (show-font--prepare-text-subr family)))
         (setq-local revert-buffer-function
                     (lambda (_ignore-auto _noconfirm)
                       (show-font-select-preview family))))
@@ -556,6 +779,31 @@ FAMILY is a string that satisfies `show-font-installed-p'."
      (format-prompt "Fonts matching REGEXP" default)
      nil 'show-font-regexp-history default)))
 
+(defun show-font--list-family-preview (check-type family language generic-title-font)
+  "Return generic `show-font--list-families' sample of FAMILY for LANGUAGE.
+Use CHECK-TYPE as a symbol of `displays' or `prefers' to run the
+corresponding checker function, like `show-font--displays-greek-p'
+instead of `show-font--prefers-greek-p'.
+
+If GENERIC-TITLE-FONT is non-nil, do not try to render the title in
+FAMILY but use whatever the `default' face is."
+  (unless (memq check-type '(prefers displays))
+    (error "The CHECK-TYPE must be the symbol `prefers' or `displays'"))
+  (let* ((check-fn (intern-soft (format "show-font--%s-%s-p" check-type language)))
+         (language-sample (or (intern-soft (format "show-font-%s-sample" language))
+                              (error "There is no known sample for `%s'" language)))
+         (sample (symbol-value language-sample)))
+    (when (funcall check-fn family)
+      (vector
+       (propertize family 'face (cond
+                                 (generic-title-font
+                                  'show-font-title-in-listing)
+                                 ((show-font--displays-latin-p family)
+                                  (list 'show-font-title-in-listing :family family))
+                                 (t
+                                  'show-font-title-in-listing)))
+       (propertize sample 'face (list 'show-font-regular :family family))))))
+
 (defun show-font--list-families (&optional regexp)
   "Return a list of propertized family strings for `show-font-list'.
 Optional REGEXP has the meaning documented in the function
@@ -563,28 +811,28 @@ Optional REGEXP has the meaning documented in the function
   (if-let* ((families (show-font-get-installed-font-families regexp)))
       (mapcar
        (lambda (family)
-         (let ((emoji-p (show-font--displays-emoji-p family))
-               (icon-p (show-font--displays-icon-p family))
-               (latin-p (show-font--displays-latin-p family)))
-           (list
-            family
+         (list
+          family
+          (cond
+           ((show-font--list-family-preview 'prefers family "mathematics" :generic-title-font))
+           ((show-font--list-family-preview 'prefers family "music" :generic-title-font))
+           ((show-font--list-family-preview 'prefers family "symbols" :generic-title-font))
+           ((show-font--list-family-preview 'displays family "emoji" :generic-title-font))
+           ((show-font--list-family-preview 'displays family "icon" :generic-title-font))
+           ((show-font--list-family-preview 'prefers family "arabic" nil))
+           ((show-font--list-family-preview 'prefers family "chinese" nil))
+           ((show-font--list-family-preview 'prefers family "greek" nil))
+           ((show-font--list-family-preview 'prefers family "japanese" nil))
+           ((show-font--list-family-preview 'prefers family "korean" nil))
+           ((show-font--list-family-preview 'prefers family "russian" nil))
+           ((show-font--displays-latin-p family)
             (vector
-             (cond
-              ((or icon-p emoji-p)
-               (propertize family 'face (list 'show-font-title-in-listing)))
-              (latin-p
-               (propertize family 'face (list 'show-font-title-in-listing :family family)))
-              (t
-               (propertize family 'face (list :inherit '(error show-font-title-in-listing)))))
-             (cond
-              (emoji-p
-               (propertize show-font-emoji-sample 'face (list 'show-font-regular :family family)))
-              (icon-p
-               (propertize show-font-icon-sample 'face (list 'show-font-regular :family family)))
-              (latin-p
-               (propertize (show-font--get-pangram) 'face (list 'show-font-regular :family family)))
-              (t
-               (propertize "No preview" 'face (list :inherit '(error show-font-regular)))))))))
+             (propertize family 'face (list 'show-font-title-in-listing :family family))
+             (propertize (show-font--get-pangram) 'face (list 'show-font-regular :family family))))
+           (t
+            (vector
+             (propertize family 'face 'show-font-title-in-listing)
+             (propertize "No known preview" 'face 'error))))))
        families)
     (error "No font families found")))
 
@@ -592,31 +840,40 @@ Optional REGEXP has the meaning documented in the function
   "Regexp for `show-font-get-installed-font-families'.
 Only `let' bind this while calling `show-font-tabulated-mode'.")
 
+(defun show-font-tabulated-copy-name ()
+  "Copy the name of the font family of the current line into the `kill-ring'."
+  (interactive nil show-font-tabulated-mode)
+  (unless (derived-mode-p 'show-font-tabulated-mode)
+    (user-error "Can only do this inside the `show-font-tabulated-mode'"))
+  (if-let* ((family (tabulated-list-get-id)))
+      (prog1
+          (kill-new family)
+        (message "Copied the `%s' font family" (propertize family 'face 'bold)))
+    (error "No font family on the current line")))
+
 (defun show-font-tabulated-select-preview ()
   "Preview the font on the current line in `show-font-tabulated-mode'."
-  (interactive nil 'show-font-tabulated-mode)
+  (interactive nil show-font-tabulated-mode)
   (unless (derived-mode-p 'show-font-tabulated-mode)
     (user-error "Can only do this inside the `show-font-tabulated-mode'"))
   (if-let* ((family (tabulated-list-get-id)))
       (show-font-select-preview family)
     (error "No font family on the current line")))
 
-(defvar show-font-tabulated-mode-map
-  (let ((map (make-sparse-keymap)))
-    (define-key map (kbd "RET") #'show-font-tabulated-select-preview)
-    map)
-  "Key map for the `show-font-tabulated-mode'.")
-
 (define-derived-mode show-font-tabulated-mode tabulated-list-mode "Show fonts"
   "Major mode to display font previews."
   :interactive nil
   (setq-local tabulated-list-format
-              [("Font family" 60 t)
-               ("Sample text" 0 t)])
+              (vector (list (substitute-command-keys "Font family (\\<show-font-tabulated-mode-map>\\[show-font-tabulated-copy-name] to copy)") 60 t)
+                      (list (substitute-command-keys "Sample text (\\<show-font-tabulated-mode-map>\\[show-font-tabulated-select-preview] for full preview)") 0 t)))
   (setq-local tabulated-list-entries
               (show-font--list-families show-font-tabulated-current-regexp))
   (tabulated-list-init-header)
   (tabulated-list-print))
+
+(let ((map show-font-tabulated-mode-map))
+  (define-key map (kbd "w") #'show-font-tabulated-copy-name)
+  (define-key map (kbd "RET") #'show-font-tabulated-select-preview))
 
 ;;;###autoload
 (defun show-font-tabulated (&optional regexp)
@@ -625,6 +882,8 @@ With optional REGEXP as a prefix argument, prompt for a string or
 regular expression to list only fonts matching the given input.
 Otherwise, list all installed fonts."
   (interactive (list (when current-prefix-arg (show-font-regexp-prompt))))
+  (unless (display-graphic-p)
+    (user-error "Can only preview fonts in graphical Emacs"))
   (let ((buffer (get-buffer-create "*show-font-list*")))
     (with-current-buffer buffer
       (let ((show-font-tabulated-current-regexp regexp))
