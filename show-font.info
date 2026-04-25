@@ -1,4 +1,4 @@
-This is docgxDNa6.info, produced by makeinfo version 7.1.1 from
+This is show-font.info, produced by makeinfo version 7.2 from
 show-font.texi.
 
 Copyright (C) 2024-2026 Free Software Foundation, Inc.
@@ -20,7 +20,7 @@ START-INFO-DIR-ENTRY
 END-INFO-DIR-ENTRY
 
 
-File: docgxDNa6.info,  Node: Top,  Next: Installation,  Up: (dir)
+File: show-font.info,  Node: Top,  Next: Installation,  Up: (dir)
 
 show-font: preview fonts
 ************************
@@ -38,10 +38,9 @@ Copyright (C) 2024-2026 Free Software Foundation, Inc.
      (a) The FSF’s Back-Cover Text is: “You have the freedom to copy and
      modify this GNU manual.”
 
-   This manual, written by Protesilaos Stavrou, describes the
-customization options for the Emacs package called ‘show-font’ (or
-‘show-font.el’), and provides every other piece of information pertinent
-to it.
+   This manual, written by Protesilaos, describes the customization
+options for the Emacs package called ‘show-font’ (or ‘show-font.el’),
+and provides every other piece of information pertinent to it.
 
    The documentation furnished herein corresponds to stable version
 1.0.0, released on 2025-09-07.  Any reference to a newer feature which
@@ -85,9 +84,8 @@ Indices
 * Variable index::
 * Concept index::
 
-
 
-File: docgxDNa6.info,  Node: Installation,  Next: Sample configuration,  Prev: Top,  Up: Top
+File: show-font.info,  Node: Installation,  Next: Sample configuration,  Prev: Top,  Up: Top
 
 1 Installation
 **************
@@ -98,7 +96,7 @@ File: docgxDNa6.info,  Node: Installation,  Next: Sample configuration,  Prev: T
 * Manual installation::
 
 
-File: docgxDNa6.info,  Node: GNU ELPA package,  Next: Manual installation,  Up: Installation
+File: show-font.info,  Node: GNU ELPA package,  Next: Manual installation,  Up: Installation
 
 1.1 GNU ELPA package
 ====================
@@ -117,7 +115,7 @@ archive.  Read:
 <https://protesilaos.com/codelog/2022-05-13-emacs-elpa-devel/>.
 
 
-File: docgxDNa6.info,  Node: Manual installation,  Prev: GNU ELPA package,  Up: Installation
+File: show-font.info,  Node: Manual installation,  Prev: GNU ELPA package,  Up: Installation
 
 1.2 Manual installation
 =======================
@@ -144,7 +142,7 @@ following commands in a shell prompt:
    Everything is in place to set up the package.
 
 
-File: docgxDNa6.info,  Node: Sample configuration,  Next: Overview,  Prev: Installation,  Up: Top
+File: show-font.info,  Node: Sample configuration,  Next: Overview,  Prev: Installation,  Up: Top
 
 2 Sample configuration
 **********************
@@ -163,7 +161,7 @@ File: docgxDNa6.info,  Node: Sample configuration,  Next: Overview,  Prev: Insta
         ("C-c s t" . show-font-tabulated)))
 
 
-File: docgxDNa6.info,  Node: Overview,  Next: Acknowledgements,  Prev: Sample configuration,  Up: Top
+File: show-font.info,  Node: Overview,  Next: Acknowledgements,  Prev: Sample configuration,  Up: Top
 
 3 Overview
 **********
@@ -258,7 +256,7 @@ elements.
    • ‘show-font-button’
 
 
-File: docgxDNa6.info,  Node: Acknowledgements,  Next: GNU Free Documentation License,  Prev: Overview,  Up: Top
+File: show-font.info,  Node: Acknowledgements,  Next: GNU Free Documentation License,  Prev: Overview,  Up: Top
 
 4 Acknowledgements
 ******************
@@ -267,7 +265,7 @@ File: docgxDNa6.info,  Node: Acknowledgements,  Next: GNU Free Documentation Lic
 matters.
 
 Author/maintainer
-     Protesilaos Stavrou.
+     Protesilaos.
 
 Contributions to code or the manual
      Eli Zaretskii, Philip Kaludercic, Swapnil Mahajan.
@@ -276,7 +274,7 @@ Ideas and/or user feedback
      Darryl Hebbes, Perry Metzger, Zhengyi Fu.
 
 
-File: docgxDNa6.info,  Node: GNU Free Documentation License,  Next: Indices,  Prev: Acknowledgements,  Up: Top
+File: show-font.info,  Node: GNU Free Documentation License,  Next: Indices,  Prev: Acknowledgements,  Up: Top
 
 5 GNU Free Documentation License
 ********************************
@@ -758,7 +756,7 @@ software license, such as the GNU General Public License, to permit
 their use in free software.
 
 
-File: docgxDNa6.info,  Node: Indices,  Prev: GNU Free Documentation License,  Up: Top
+File: show-font.info,  Node: Indices,  Prev: GNU Free Documentation License,  Up: Top
 
 6 Indices
 *********
@@ -770,7 +768,7 @@ File: docgxDNa6.info,  Node: Indices,  Prev: GNU Free Documentation License,  Up
 * Concept index::
 
 
-File: docgxDNa6.info,  Node: Function index,  Next: Variable index,  Up: Indices
+File: show-font.info,  Node: Function index,  Next: Variable index,  Up: Indices
 
 6.1 Function index
 ==================
@@ -786,7 +784,7 @@ File: docgxDNa6.info,  Node: Function index,  Next: Variable index,  Up: Indices
 * show-font-tabulated-select-preview:    Overview.             (line 13)
 
 
-File: docgxDNa6.info,  Node: Variable index,  Next: Concept index,  Prev: Function index,  Up: Indices
+File: show-font.info,  Node: Variable index,  Next: Concept index,  Prev: Function index,  Up: Indices
 
 6.2 Variable index
 ==================
@@ -819,7 +817,7 @@ File: docgxDNa6.info,  Node: Variable index,  Next: Concept index,  Prev: Functi
 * show-font-title-in-listing:            Overview.             (line 89)
 
 
-File: docgxDNa6.info,  Node: Concept index,  Prev: Variable index,  Up: Indices
+File: show-font.info,  Node: Concept index,  Prev: Variable index,  Up: Indices
 
 6.3 Concept index
 =================
@@ -830,25 +828,25 @@ File: docgxDNa6.info,  Node: Concept index,  Prev: Variable index,  Up: Indices
 * Contributors:                          Acknowledgements.      (line 6)
 * Installation instructions:             Installation.          (line 6)
 
-
 
 Tag Table:
-Node: Top828
-Node: Installation2937
-Node: GNU ELPA package3119
-Node: Manual installation3683
-Node: Sample configuration4464
-Node: Overview4960
-Node: Acknowledgements9303
-Node: GNU Free Documentation License9751
-Node: Indices34893
-Node: Function index35069
-Node: Variable index35652
-Node: Concept index37498
+Node: Top826
+Node: Installation2926
+Node: GNU ELPA package3108
+Node: Manual installation3672
+Node: Sample configuration4453
+Node: Overview4949
+Node: Acknowledgements9292
+Node: GNU Free Documentation License9732
+Node: Indices34874
+Node: Function index35050
+Node: Variable index35633
+Node: Concept index37479
 
 End Tag Table
 
 
 Local Variables:
 coding: utf-8
+Info-documentlanguage: en
 End:
